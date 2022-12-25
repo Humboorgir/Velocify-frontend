@@ -3,7 +3,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head />
-      <body style={{ margin: 0, fontFamily: "sans-serif" }}>
+      <body>
         <Main />
         <NextScript />
       </body>

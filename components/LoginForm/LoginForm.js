@@ -6,7 +6,7 @@ import PasswordReset from "./LFComponents/PasswordReset";
 const LoginForm = ({ styles }) => {
   return (
     <>
-      <form className={styles.form} action="/register" method="POST">
+      <form className={styles.form} action="/api/login" method="POST">
         <EmailField styles={styles} />
         <PasswordField styles={styles} />
         <SubmitButton styles={styles} />
