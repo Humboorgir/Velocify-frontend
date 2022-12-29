@@ -26,6 +26,11 @@
 .form input::placeholder {
   color: var(--weak-text-color);
 }
+.form input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #17191d inset;
+  -webkit-box-shadow: 0 0 0px 1000px #17191d inset;
+  -webkit-text-fill-color: var(--normal-text-color);
+}
 .formControl {
   height: fit-content;
   width: fit-content;
@@ -116,12 +121,4 @@
   border-radius: 10px;
   width: 250px;
   height: 50px;
-}
-@keyframes downloadAnimation {
-  0% {
-    transform: 0;
-  }
-  100% {
-    transform: translateY(10px);
-  }
 }

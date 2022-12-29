@@ -1,6 +1,6 @@
 import React from "react";
 
-const HHeader = ({ styles, onClick }) => {
+const HHeader = ({ openRegModal, openLogModal, styles }) => {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
@@ -30,8 +30,8 @@ const HHeader = ({ styles, onClick }) => {
         </li>
       </ul>
       <div className={styles.headerUl2}>
-        <a onClick={onClick}>Register</a>
-        <a className={styles.headerUl2LastChild} href="/login">
+        <a onClick={openRegModal}>Register</a>
+        <a onClick={openLogModal} className={styles.headerUl2LastChild}>
           Login
         </a>
       </div>

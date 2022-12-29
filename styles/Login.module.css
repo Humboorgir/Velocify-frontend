@@ -1,156 +1,91 @@
-.body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  min-height: 100vh;
-  width: 100%;
-  background-color: var(--background-color);
-}
-.header {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  height: 80px;
-  position: relative;
+.form {
+  z-index: 1;
+  color: var(--normal-text-color);
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
   background-color: var(--hightlighted-background-color);
-}
-.header ul {
-  margin-top: 30px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 30px 30px;
   width: fit-content;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 20px;
-  list-style-type: none;
-  align-content: flex-end;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-.header ul li a {
+.input {
+  display: block;
+  border: none;
+  color: var(--normal-text-color);
+  outline: 3px solid rgb(185, 185, 185);
+  box-sizing: border-box;
   border-radius: 5px;
-  padding: 10px 20px;
-  width: fit-content;
-  height: fit-content;
-  text-decoration: none;
+  padding: 10px 10px;
+  width: 300px;
+  background-color: inherit;
+}
+.form input::placeholder {
   color: var(--weak-text-color);
 }
-.header ul li:first-child a {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom: 2px solid white;
-  color: var(--strong-text-color);
+.form input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #17191d inset;
+  -webkit-box-shadow: 0 0 0px 1000px #17191d inset;
+  -webkit-text-fill-color: var(--normal-text-color);
 }
-.logo {
-  width: 180px;
-  height: 80px;
-  padding-left: 10px;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  align-content: flex-start;
-}
-.logoImage {
-  display: inline;
-  margin-top: 8px;
-}
-.logoText {
-  background-image: linear-gradient(to bottom, #f5c400, #f50000);
-  color: transparent !important;
-  background-clip: text;
-  -webkit-background-clip: text;
-  margin-top: 22px;
-  font-family: sans-serif;
-  font-size: 30px;
-  height: 80px;
-  display: inline-block;
-  width: 200px;
-  margin-left: 5px;
-}
-.heroImage {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  height: 500px;
-  /* background-image: linear-gradient(to bottom right, rgb(138, 110, 0), rgb(146, 54, 0));
-    background-size: 600%; */
-  /* animation-name: movingGradient;
-    animation-duration: 10s;
-    animation-timing-function: ease;
-    animation-iteration-count: infinite; */
-}
-.heroText {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: center;
-  text-align: center;
-  color: var(--normal-text-color);
-  margin-bottom: 50px;
-}
-.heroText h1 {
-  color: var(--normal-text-color);
-  font-size: 60px;
-  font-family: sans-serif;
-  font-weight: 500;
-  margin: 0;
-}
-.heroText p {
-  color: rgb(215, 215, 215);
+.formControl {
+  height: fit-content;
+  width: fit-content;
 }
 .btnGroup {
   font-size: 0px;
-  width: fit-content;
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  justify-content: space-between;
 }
-.btnGroup .download {
-  font-size: 20px;
+.submit {
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  width: 130px;
-  height: 30px;
-  text-decoration: none;
-  padding: 10px 20px;
-  background-image: linear-gradient(to bottom right, #f5c400, rgb(234, 74, 0));
-  color: var(--normal-text-color);
-  border-radius: 100px;
-}
-.btnGroup .openInBrowser {
-  font-size: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 130px;
-  height: 30px;
-  text-decoration: none;
-  padding: 10px 20px;
-  border: 3px solid #f5c400;
-  color: #f5c400;
-  border-radius: 100px;
-}
-.fa-brands {
-  font-size: 16px;
-}
-.headerUl2 {
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: row;
-  gap: 15px;
-  width: fit-content;
-  margin-left: 70px;
-}
-.headerUl2 a {
-  color: var(--normal-text-color);
+  gap: 7px;
+  cursor: pointer;
+  width: 300px;
+  color: white;
+  border: none;
+  background-image: linear-gradient(to bottom right, #e2b500, rgb(213, 68, 0));
   padding: 10px 20px;
   border-radius: 50px;
-  border: 3px solid #f5c400;
+  overflow: hidden;
+}
+.submit svg {
+  margin-left: 0;
+  font-size: 15px;
+}
+.localLogin {
+  width: fit-content;
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  column-gap: 30px;
+  row-gap: 20px;
+}
+.localLogin label {
+  color: var(--normal-text-color);
+  display: block;
+  margin-bottom: 10px;
+}
+.noAccount {
+  font-size: 14px;
+  width: 300px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 5px;
+  margin-left: 5px;
+}
+.noAccount a {
+  color: rgb(18, 113, 255);
   text-decoration: none;
+}
+.noAccount a:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }

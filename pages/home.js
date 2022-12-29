@@ -39,9 +39,6 @@ export default function Home() {
   //     gogolbtn.classList.remove(styles.showLeft);
   //   }, 1600);
   // }, []);
-  const [modalOpen, setModalOpen] = useState(false);
-  const open = () => setModalOpen(true);
-  const close = () => setModalOpen(false);
   return (
     <>
       <Head>
@@ -50,12 +47,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Velocify ~ Home</title>
       </Head>
-      <HomePage
-        onClick={() => (modalOpen ? close() : open())}
-        modalOpen={modalOpen}
-        close={close}
-        styles={styles}
-      />
+      <HomePage styles={styles} />
     </>
   );
 }
