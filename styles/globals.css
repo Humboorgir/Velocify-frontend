@@ -1,9 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer components {
+  body {
+    @apply bg-bgColor;
+  }
+  .headerLIHighlighted {
+    @apply border-b-2 border-b-white !text-textColorStrong;
+  }
+  .headerLI {
+    @apply flex items-center;
+  }
+  .headerLI a {
+    @apply py-3 px-5 w-fit h-fit no-underline text-textColorWeak;
+  }
+  .credentialsInput {
+    @apply block border-[3px] border-textColor rounded-md m-auto p-[10px] w-[300px] bg-inherit
+      text-[15px] placeholder-[10px] placeholder-textColorWeak placeholder:text-[15px]
+      autofill:shadow-autofill autofill:text-textColor;
+  }
+  .thirdPartyLogin {
+    @apply flex flex-row items-center justify-start cursor-pointer gap-[10px] text-textColor text-sm
+    bg-bgColorWeak border-[2px] border-textColor py-[20px] pl-[50px] rounded-lg w-[250px] h-[50px];
+  }
+}
+.credentialsInput:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px #17191d inset;
+  -webkit-box-shadow: 0 0 0px 1000px #17191d inset;
+  -webkit-text-fill-color: var(--normal-text-color);
+  filter: none;
+}
+.credentialsInput:autofill {
+  box-shadow: 0 0 0px 1000px #17191d inset;
+  -webkit-box-shadow: 0 0 0px 1000px #17191d inset;
+  -webkit-text-fill-color: var(--normal-text-color);
+  filter: none;
+}
 :root {
   --strong-text-color: #ffff;
-  --normal-text-color: rgb(236, 236, 236);
-  --weak-text-color: rgb(175, 175, 175);
+  --normal-text-color: #ececec;
+  --weak-text-color: #afafaf;
   --background-color: #1e2025;
   --hightlighted-background-color: #17191d;
+}
+input:focus {
+  outline: none;
 }
 html,
 body {
@@ -12,24 +53,6 @@ body {
   padding: 0;
   min-height: 100vh;
   position: relative;
-}
-footer {
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  box-sizing: border-box;
-  padding-top: 30px;
-  background-color: var(--hightlighted-background-color);
-  color: var(--normal-text-color);
-  position: absolute;
-  width: 100%;
-  height: 100px;
-  bottom: 0px;
-}
-footer svg {
-  color: var(--normal-text-color);
-  margin-left: 10px;
-  font-size: 20px;
 }
 .backdrop {
   position: absolute;
@@ -41,6 +64,7 @@ footer svg {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
 .modal {
   width: clamp(50%, 700px, 90%);
