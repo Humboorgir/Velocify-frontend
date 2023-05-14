@@ -9,16 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "bcrypt": "^5.1.0",
     "framer-motion": "^8.0.1",
-    "mongoose": "^6.7.3",
     "next": "13.0.4",
-    "passport": "^0.6.0",
-    "passport-local": "^1.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.6.0",
-    "socket.io": "^4.5.4",
     "socket.io-client": "^4.5.4"
   },
   "devDependencies": {
