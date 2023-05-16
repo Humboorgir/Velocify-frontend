@@ -15,13 +15,13 @@
     @apply py-3 px-5 w-fit h-fit no-underline text-textColorWeak;
   }
   .credentialsInput {
-    @apply block border-[3px] border-textColor rounded-md m-auto p-[10px] w-[300px] bg-inherit
-      text-[15px] placeholder-[10px] placeholder-textColorWeak placeholder:text-[15px]
-      autofill:shadow-autofill autofill:text-textColor;
+    @apply block border-[3px] border-textColorSemiWeak rounded-md m-auto p-[10px] w-[300px] bg-inherit
+      text-[15px] placeholder-[10px] placeholder-textColorWeak placeholder:text-[14px]
+      autofill:shadow-autofill autofill:text-textColorSemiWeak;
   }
   .thirdPartyLogin {
     @apply flex flex-row items-center justify-start cursor-pointer gap-[10px] text-textColor text-sm
-    bg-bgColorWeak border-[2px] border-textColor py-[20px] pl-[50px] rounded-lg w-[250px] h-[50px];
+    bg-bgColorWeak border-[2px] border-textColorSemiWeak py-[20px] pl-[50px] rounded-lg w-[250px] h-[50px];
   }
 }
 .credentialsInput:-webkit-autofill {
@@ -46,22 +46,6 @@ body {
   padding: 0;
   min-height: 100vh;
   position: relative;
-}
-.backdrop {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: #000000a0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-}
-.modal {
-  width: clamp(50%, 700px, 90%);
-  height: auto;
 }
 .alert {
   display: flex;
