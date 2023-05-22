@@ -1,8 +1,10 @@
+import Router from "next/router";
+
 import CredentialsLogin from "@/components/register/credentialslogin";
 import ThirdPartyLogin from "@/components/register/thirdpartylogin";
 import Title from "@/components/register/title";
 import Return from "@/components/register/return";
-const authServer = process.env.AUTH_SERVER || "http://localhost:2000";
+const AUTH_SERVER = process.env.AUTH_SERVER || "http://localhost:2000/auth";
 const Register = () => {
   return (
     // container
@@ -25,18 +27,22 @@ const Register = () => {
   );
 };
 
-function handleSubmit(e) {
-  const username = e.target.username;
-  const email = e.target.email;
-  const password = e.target.password;
+async function handleSubmit(e) {
+  e.preventDefault();
+  // TODO: throw an error if the password field doesnt match confirm password
+  // i know this isnt hard but im too lazy to do the css styling at the moment.
+  const username = e.target.username.value;
+  const email = e.target.email.value;
+  const password = e.target.password.value;
   const user = { username, email, password };
   // for testing purposes
   console.table(user);
-  e.preventDefault();
-  fetch(`${AUTH_SERVER}/login`, {
+  let res = await fetch(`${AUTH_SERVER}/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
   });
+  if (res.status === 500) return console.log("register unsuccessful");
+  if (res.status === 200) Router.push("/login");
 }
 export default Register;
