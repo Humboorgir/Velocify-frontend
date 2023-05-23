@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* I'll eventually remove these */
 @layer components {
   body {
     @apply bg-bgColor;
