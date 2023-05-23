@@ -1,16 +1,16 @@
 const Username = () => {
   return (
-    <div className="w-fit h-fit">
+    <div className="h-fit w-fit">
       <label
-        className="text-textColorSemiWeak block mb-[6px]"
+        className="mb-[6px] block text-textColorSemiWeak"
         htmlFor="username"
       >
         Username
       </label>
       <input
-        className="block border-[3px] border-textColorSemiWeak rounded-md m-auto p-[10px] w-[300px] bg-inherit
+        className="m-auto block w-[300px] rounded-md border-[3px] border-textColorSemiWeak bg-inherit p-[10px]
         text-[15px] placeholder-[10px] placeholder-textColorWeak placeholder:text-[14px]
-        autofill:shadow-autofill autofill:text-textColorSemiWeak"
+        autofill:text-textColorSemiWeak autofill:shadow-autofill"
         type="text"
         id="username"
         name="username"

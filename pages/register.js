@@ -13,14 +13,14 @@ const Register = () => {
     <>
       <Head page="register" />
       {/* container */}
-      <div className="p-3 flex flex-col items-center justify-center min-h-full w-full absolute gap-3 md:gap-6">
+      <div className="absolute flex min-h-full w-full flex-col items-center justify-center gap-3 p-3 md:gap-6">
         {/* the return option (only visible on large/computer screens) */}
         <Return />
         <Title />
         {/* the signup form */}
         <form
-          className="flex flex-col md:flex-row justify-center items-center md:items-start rounded-xl 
-        px-4 py-6 mb-4 w-[90vw] md:w-[700px] text-textColorSemiWeak bg-bgColorStrong relative gap-4"
+          className="relative mb-4 flex w-[90vw] flex-col items-center justify-center 
+        gap-4 rounded-xl bg-bgColorStrong px-4 py-6 text-textColorSemiWeak md:w-[700px] md:flex-row md:items-start"
           onSubmit={(e) => handleSubmit(e, setIsProcessing)}
         >
           {/* signup with credentials */}
