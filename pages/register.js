@@ -1,9 +1,9 @@
 import Router from "next/router";
 
-import CredentialsLogin from "@/components/register/credentialslogin";
-import ThirdPartyLogin from "@/components/register/thirdpartylogin";
 import Title from "@/components/register/title";
 import Return from "@/components/register/return";
+import CredentialsLogin from "@/components/register/credentialslogin";
+import ThirdPartyLogin from "@/components/register/thirdpartylogin";
 const AUTH_SERVER = process.env.AUTH_SERVER || "http://localhost:2000/auth";
 const Register = () => {
   return (

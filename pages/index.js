@@ -1,8 +1,8 @@
-import Head from "../components/head";
+import Head from "../components/global/head";
 import { useState } from "react";
 import Header from "../components/home/header";
 import Hero from "../components/home/hero";
-import Footer from "../components/footer";
+import Footer from "../components/global/footer";
 import Alert from "../components/home/alert";
 export default function Home() {
   const [alert, setAlert] = useState({
