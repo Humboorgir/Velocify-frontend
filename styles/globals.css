@@ -14,10 +14,6 @@
   .headerLI a {
     @apply py-3 px-5 w-fit h-fit no-underline text-textColorWeak;
   }
-  .thirdPartyLogin {
-    @apply flex flex-row items-center justify-start cursor-pointer gap-[10px] text-textColor text-sm
-    bg-bgColorWeak border-[2px] border-textColorSemiWeak py-[20px] pl-[50px] rounded-lg w-[250px] h-[50px];
-  }
 }
 .credentialsInput:-webkit-autofill {
   box-shadow: 0 0 0px 1000px #17191d inset;
