@@ -38,10 +38,9 @@ async function handleSubmit(e, setIsProcessing) {
   setIsProcessing(true);
   // TODO: throw an error if the password field doesnt match confirm password
   // i know this isnt hard but im too lazy to do the css styling at the moment.
-  const username = e.target.username.value;
   const email = e.target.email.value;
   const password = e.target.password.value;
-  const user = { username, email, password };
+  const user = { email, password };
   // for testing purposes
   console.table(user);
   let res = await fetch(`${AUTH_SERVER}/login`, {
@@ -49,7 +48,21 @@ async function handleSubmit(e, setIsProcessing) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
   });
-  if (res.status === 500) return console.log("login unsuccessful");
-  if (res.status === 200) Router.push("/login");
+
+  switch (res.status) {
+    case 404:
+      setIsProcessing(false);
+      console.log("user not found");
+      break;
+    case 401:
+      setIsProcessing(false);
+      console.log("Invalid password");
+      break;
+    case 200:
+      res = await res.json();
+      console.log(res);
+      console.log("login successful");
+  }
+  // if (res.status === 200) Router.push("/app");
 }
 export default Login;
