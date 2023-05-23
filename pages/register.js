@@ -1,4 +1,5 @@
 import Router from "next/router";
+import { useState } from "react";
 
 import Title from "@/components/register/title";
 import Return from "@/components/register/return";
@@ -6,6 +7,7 @@ import CredentialsLogin from "@/components/register/credentialslogin";
 import ThirdPartyLogin from "@/components/register/thirdpartylogin";
 const AUTH_SERVER = process.env.AUTH_SERVER || "http://localhost:2000/auth";
 const Register = () => {
+  const [isProcessing, setIsProcessing] = useState(false);
   return (
     // container
     <div className="p-3 flex flex-col items-center justify-center min-h-full w-full absolute gap-3 md:gap-6">
@@ -16,10 +18,10 @@ const Register = () => {
       <form
         className="flex flex-col md:flex-row justify-center items-center md:items-start rounded-xl 
         px-4 py-6 mb-4 w-[90vw] md:w-[700px] text-textColorSemiWeak bg-bgColorStrong relative gap-4"
-        onSubmit={handleSubmit}
+        onSubmit={(e) => handleSubmit(e, setIsProcessing)}
       >
         {/* signup with credentials */}
-        <CredentialsLogin />
+        <CredentialsLogin isProcessing={isProcessing} />
         {/* signup with a third party provider */}
         <ThirdPartyLogin />
       </form>
@@ -27,8 +29,9 @@ const Register = () => {
   );
 };
 
-async function handleSubmit(e) {
+async function handleSubmit(e, setIsProcessing) {
   e.preventDefault();
+  setIsProcessing(true);
   // TODO: throw an error if the password field doesnt match confirm password
   // i know this isnt hard but im too lazy to do the css styling at the moment.
   const username = e.target.username.value;

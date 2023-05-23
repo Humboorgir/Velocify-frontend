@@ -5,7 +5,7 @@ import ConfirmPassword from "@/components/register/confirmpassword";
 import Agreement from "@/components/register/agreement";
 import Submit from "@/components/register/submit";
 
-const CredentialsLogin = () => {
+const CredentialsLogin = ({ isProcessing }) => {
   return (
     <div
       className="w-[90%] md:w-fit pb-8 md:pr-8 border-b-[3px] border-b-yellowStrong md:border-r-[3px] md:border-r-yellowStrong 
@@ -16,7 +16,7 @@ const CredentialsLogin = () => {
       <Password />
       <ConfirmPassword />
       <Agreement />
-      <Submit />
+      <Submit isProcessing={isProcessing} />
     </div>
   );
 };
