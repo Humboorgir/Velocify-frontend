@@ -8,7 +8,9 @@ const Username = () => {
         Username
       </label>
       <input
-        className="credentialsInput"
+        className="block border-[3px] border-textColorSemiWeak rounded-md m-auto p-[10px] w-[300px] bg-inherit
+        text-[15px] placeholder-[10px] placeholder-textColorWeak placeholder:text-[14px]
+        autofill:shadow-autofill autofill:text-textColorSemiWeak"
         type="text"
         id="username"
         name="username"

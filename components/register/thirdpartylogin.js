@@ -7,13 +7,13 @@ const ThirdPartyLogin = () => {
         Don't want to make an account?
       </span>
       <button className="thirdPartyLogin">
-        <FaGoogle className="text-xl" /> Login with Google
+        <FaGoogle className="text-xl" /> Sign up with Google
       </button>
       <button className="thirdPartyLogin">
-        <FaGithub className="text-xl" /> Login with Github
+        <FaGithub className="text-xl" /> Sign up with Github
       </button>
       <button className="thirdPartyLogin">
-        <FaFacebook className="text-xl" /> Login with Facebook
+        <FaFacebook className="text-xl" /> Sign up with Facebook
       </button>
     </div>
   );
