@@ -60,9 +60,9 @@ async function handleSubmit(e, setIsProcessing) {
       break;
     case 200:
       res = await res.json();
-      console.log(res);
-      console.log("login successful");
+      localStorage.setItem("token", res.accessToken);
+      Router.push("/app");
+      break;
   }
-  // if (res.status === 200) Router.push("/app");
 }
 export default Login;
