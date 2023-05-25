@@ -60,6 +60,10 @@ async function handleSubmit(e, setIsProcessing) {
       break;
     case 200:
       res = await res.json();
+      document.cookie = `refreshToken=${res.refreshToken};
+       max-age=${90 * 24 * 60 * 60};
+       HttpOnly;
+       SameSite=Strict;`;
       localStorage.setItem("token", res.accessToken);
       Router.push("/app");
       break;
