@@ -1,9 +1,9 @@
 const HHero = () => {
   return (
     // hero
-    <div className="flex flex-col items-center justify-center overflow-hidden h-[500px]">
+    <div className="flex h-[500px] flex-col items-center justify-center overflow-hidden">
       {/* hero text */}
-      <div className="flex flex-col gap-[10px] items-center text-center text-textColor mb-12">
+      <div className="mb-12 flex flex-col items-center gap-[10px] text-center text-textColor">
         {/* <h1 className="text-textColor text-6xl font-medium m-0">
           V E L O C I F Y
         </h1>
@@ -11,28 +11,28 @@ const HHero = () => {
         text-4xl
         */}
         <h1
-          className="text-yellow text-4xl font-medium m-0 
-        bg-gradient-to-b from-gradientYellow to-gradientRed !text-transparent bg-clip-text"
+          className="m-0 bg-gradient-to-b from-gradientYellow to-gradientRed 
+        bg-clip-text text-4xl font-medium text-yellow !text-transparent"
         >
           Velocify your everyday life
         </h1>
-        <p className="text-textColorSemiWeak mb-2 w-[25vw]">
+        <p className="mb-2 w-[25vw] text-textColorSemiWeak">
           Velocify provides a secure, fast and private text messenger to speed
           up your life
         </p>
         {/* button group */}
-        <div className="flex flex-row gap-5 justify-between w-fit">
+        <div className="flex w-fit flex-row justify-between gap-5">
           <a
-            class="flex justify-center items-center ext-xl decoration-none w-[130px] h-[30px] 
-            py-[10px] px-[20px] box-content text-[20px] bg-gradient-to-br from-gradientYellow
-             to-gradientOrange text-textColor rounded-3xl"
+            className="ext-xl decoration-none box-content flex h-[30px] w-[130px] items-center 
+            justify-center rounded-3xl bg-gradient-to-br from-gradientYellow to-gradientOrange py-[10px]
+             px-[20px] text-[20px] text-textColor"
             href="/download"
           >
             Download
           </a>
           <a
-            className="flex justify-center items-center w-[124px] h-[24px] decoration-none py-[10px] px-[20px] 
-            border-[3px] border-yellow text-yellow rounded-3xl box-content text-[20px]"
+            className="decoration-none box-content flex h-[24px] w-[124px] items-center justify-center rounded-3xl 
+            border-[3px] border-yellow py-[10px] px-[20px] text-[20px] text-yellow"
             href="/app"
           >
             Web app
