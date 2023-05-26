@@ -4,12 +4,6 @@ const HHero = () => {
     <div className="flex h-[500px] flex-col items-center justify-center overflow-hidden">
       {/* hero text */}
       <div className="mb-12 flex flex-col items-center gap-[10px] text-center text-textColor">
-        {/* <h1 className="text-textColor text-6xl font-medium m-0">
-          V E L O C I F Y
-        </h1>
-        bg-gradient-to-b from-gradientYellow to-gradientRed !text-transparent bg-clip-text
-        text-4xl
-        */}
         <h1
           className="m-0 bg-gradient-to-b from-gradientYellow to-gradientRed 
         bg-clip-text text-4xl font-medium text-yellow !text-transparent"
