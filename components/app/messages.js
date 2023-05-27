@@ -1,6 +1,6 @@
 const Messages = ({ messages }) => {
   return (
-    <>
+    <div className="flex flex-col gap-3">
       {messages.map((message) => {
         return (
           <div className="flex flex-col rounded-lg bg-[#282b30] p-3">
@@ -9,7 +9,7 @@ const Messages = ({ messages }) => {
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 
