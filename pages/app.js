@@ -30,13 +30,17 @@ const App = () => {
             </div>
           );
         })}
-        <form className="absolute bottom-2 flex w-full flex-row">
-          <input
-            placeholder="Message Person 2 p-3"
-            className="w-[90%] bg-[#282b30]"
-          />
-          <button className="rounded-r-3xl bg-yellowStrong p-3">Send</button>
-        </form>
+        <div>
+          <form className="absolute bottom-2 flex w-[93%] flex-row">
+            <input
+              placeholder="Message Person 2"
+              className="w-[90%] bg-[#282b30] px-4"
+            />
+            <button className="w-[12%] rounded-r-md bg-yellowStrong p-3">
+              Send
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
