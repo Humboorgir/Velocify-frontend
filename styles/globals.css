@@ -1,4 +1,27 @@
 @tailwind base;
+/* scrollbar styles */
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #282b30 #424549;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #282b30;
+  border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #424549;
+  border-radius: 20px;
+  border: 3px solid #282b30;
+}
 @tailwind components;
 @tailwind utilities;
 /* I'll eventually remove these */
@@ -13,7 +36,7 @@
     @apply flex items-center;
   }
   .headerLI a {
-    @apply py-3 px-5 w-fit h-fit no-underline text-textColorWeak;
+    @apply h-fit w-fit py-3 px-5 text-textColorWeak no-underline;
   }
 }
 .credentialsInput:-webkit-autofill {
