@@ -35,7 +35,7 @@ const App = () => {
       {/* // container */}
       <div className="absolute grid h-full w-full place-items-center text-textColor">
         {/* chatbox */}
-        <div className="relative flex h-[70vh] w-[min(90vw,700px)] flex-col gap-3 rounded-lg border border-neutral-700 px-6 py-1">
+        <div className="relative flex h-[min(90vh,600px)] w-[min(90vw,700px)] flex-col gap-3 rounded-lg border border-neutral-700 px-6 py-1">
           <Messages messages={messages} />
           <div>
             <MessageInput />

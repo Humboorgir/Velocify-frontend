@@ -1,6 +1,6 @@
 const Messages = ({ messages }) => {
   return (
-    <div className="absolute flex h-[84%] w-[95%] flex-col gap-3 overflow-y-scroll">
+    <div className="absolute flex h-[84%] w-[95%] flex-col items-start gap-3 overflow-y-scroll">
       {messages.map((message) => {
         return (
           <div className="flex flex-col rounded-lg bg-[#282b30] p-3">
