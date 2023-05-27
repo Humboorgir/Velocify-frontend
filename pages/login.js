@@ -6,7 +6,8 @@ import Title from "@/components/login/title";
 import Return from "@/components/login/return";
 import CredentialsLogin from "@/components/login/credentialslogin";
 import ThirdPartyLogin from "@/components/login/thirdpartylogin";
-const AUTH_SERVER = process.env.AUTH_SERVER || "http://localhost:2000/auth";
+const BACKEND_ENDPOINT =
+  process.env.BACKEND_ENDPOINT || "http://localhost:2000";
 const Login = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   return (
@@ -43,7 +44,7 @@ async function handleSubmit(e, setIsProcessing) {
   const user = { email, password };
   // for testing purposes
   console.table(user);
-  let res = await fetch(`${AUTH_SERVER}/login`, {
+  let res = await fetch(`${BACKEND_ENDPOINT}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
@@ -63,7 +64,9 @@ async function handleSubmit(e, setIsProcessing) {
       document.cookie = `refreshToken=${res.refreshToken};
        max-age=${90 * 24 * 60 * 60};
        HttpOnly;
-       SameSite=Strict;`;
+       SameSite=Strict;
+       path=/auth/;
+       domain=${BACKEND_ENDPOINT};`;
       localStorage.setItem("token", res.accessToken);
       Router.push("/app");
       break;

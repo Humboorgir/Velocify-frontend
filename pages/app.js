@@ -1,46 +1,34 @@
+import { useState, useEffect } from "react";
+import Router from "next/router";
 import Head from "@/components/global/head";
-
 import Messages from "@/components/app/messages";
 import MessageInput from "@/components/app/messageinput";
-const messages = [
-  {
-    author: "Person 1",
-    content: "Hello there!",
-  },
-  {
-    author: "Person 2",
-    content: "Hi",
-  },
-  {
-    author: "Person 1",
-    content: "What's up?",
-  },
-  {
-    author: "Person 2",
-    content: "Nothing much",
-  },
-  {
-    author: "Person 1",
-    content: "You doing good?",
-  },
-  {
-    author: "Person 2",
-    content: "Yeah... atleast for now",
-  },
-  {
-    author: "Person 1",
-    content: "Anything you wanna talk about?",
-  },
-  {
-    author: "Person 2",
-    content: "Nah im good bro",
-  },
-  {
-    author: "Person 1",
-    content: "Alright",
-  },
-];
+
+// prettier-ignore
+const BACKEND_ENDPOINT = process.env.BACKEND_ENDPOINT || "http://localhost:2000";
 const App = () => {
+  // getting the token
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    fetch(`${BACKEND_ENDPOINT}/messages`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        // redirect to login if the user is not signed in or has an expired token
+        if (res.status === 401 || res.status === 403)
+          return Router.push("/login");
+        return res.json();
+      })
+      .then((messages) => {
+        console.table(messages);
+        setMessages(messages);
+      });
+  }, []);
   return (
     <>
       <Head page="app" />

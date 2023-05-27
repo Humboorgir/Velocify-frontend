@@ -6,7 +6,8 @@ import Title from "@/components/register/title";
 import Return from "@/components/register/return";
 import CredentialsLogin from "@/components/register/credentialslogin";
 import ThirdPartyLogin from "@/components/register/thirdpartylogin";
-const AUTH_SERVER = process.env.AUTH_SERVER || "http://localhost:2000/auth";
+const BACKEND_ENDPOINT =
+  process.env.BACKEND_ENDPOINT || "http://localhost:2000";
 const Register = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   return (
@@ -44,7 +45,7 @@ async function handleSubmit(e, setIsProcessing) {
   const user = { username, email, password };
   // for testing purposes
   console.table(user);
-  let res = await fetch(`${AUTH_SERVER}/register`, {
+  let res = await fetch(`${BACKEND_ENDPOINT}/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
