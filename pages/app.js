@@ -1,3 +1,5 @@
+import Messages from "@/components/app/messages";
+
 const messages = [
   {
     author: "Person 1",
@@ -22,14 +24,7 @@ const App = () => {
     <div className="absolute grid h-full w-full place-items-center text-textColor">
       {/* chatbox */}
       <div className="relative flex h-[70vh] w-[min(90vw,700px)] flex-col gap-3 rounded-lg border border-neutral-700 px-6 py-5">
-        {messages.map((message) => {
-          return (
-            <div className="flex flex-col rounded-lg bg-[#282b30] p-3">
-              <span>{message.author}</span>
-              <span className="ml-[3px]">{message.content}</span>
-            </div>
-          );
-        })}
+        <Messages messages={messages} />
         <div>
           <form className="absolute bottom-2 flex w-[93%] flex-row">
             <input
