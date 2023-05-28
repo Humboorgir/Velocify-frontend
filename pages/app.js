@@ -67,6 +67,7 @@ const App = () => {
 function messageCreate(e) {
   e.preventDefault();
   const message = e.target.message.value;
+  e.target.message.value = "";
   const socket = global.socket;
   const token = localStorage.getItem("token");
   const data = {
