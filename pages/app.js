@@ -1,3 +1,4 @@
+import { io } from "socket.io-client";
 import { useState, useEffect } from "react";
 import Router from "next/router";
 import Head from "@/components/global/head";
@@ -7,10 +8,10 @@ import MessageInput from "@/components/app/messageinput";
 // prettier-ignore
 const BACKEND_ENDPOINT = process.env.BACKEND_ENDPOINT || "http://localhost:2000";
 const App = () => {
-  // getting the token
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
+    // getting the token
     const token = localStorage.getItem("token");
     fetch(`${BACKEND_ENDPOINT}/messages`, {
       method: "GET",
@@ -28,6 +29,9 @@ const App = () => {
         console.table(messages);
         setMessages(messages);
       });
+
+    // initializing socket io
+    const socket = io(BACKEND_ENDPOINT);
   }, []);
   return (
     <>
