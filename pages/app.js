@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Router from "next/router";
 import Head from "@/components/global/head";
 import Messages from "@/components/app/messages";
@@ -9,6 +9,7 @@ import MessageInput from "@/components/app/messageinput";
 const BACKEND_ENDPOINT = process.env.BACKEND_ENDPOINT || "http://localhost:2000";
 const App = () => {
   const [messages, setMessages] = useState([]);
+  const socketRef = useRef(null);
 
   useEffect(() => {
     // getting the token
@@ -31,7 +32,20 @@ const App = () => {
       });
 
     // initializing socket io
-    const socket = io(BACKEND_ENDPOINT);
+    // first check if socket.io is already initialized
+    if (socketRef.current) return;
+    socketRef.current = io(BACKEND_ENDPOINT);
+    global.socket = socketRef.current;
+    // TODO: remove this in production
+    socket.on("connect", () => {
+      console.log("connected to socketio: " + socket.id);
+    });
+    socket.on("messageCreate", (message) => {
+      console.table(message);
+      setMessages((messages) => {
+        return [...messages, message];
+      });
+    });
   }, []);
   return (
     <>
@@ -42,12 +56,26 @@ const App = () => {
         <div className="relative flex h-[min(95vh,600px)] w-[min(95vw,700px)] flex-col gap-3 rounded-lg border border-neutral-700 py-1">
           <Messages messages={messages} />
           <div>
-            <MessageInput />
+            <MessageInput messageCreate={messageCreate} />
           </div>
         </div>
       </div>
     </>
   );
 };
+
+function messageCreate(e) {
+  e.preventDefault();
+  const message = e.target.message.value;
+  const socket = global.socket;
+  const token = localStorage.getItem("token");
+  const data = {
+    token,
+    message,
+  };
+  console.log("sending the following data:");
+  console.table(data);
+  socket.emit("messageCreate", data);
+}
 
 export default App;

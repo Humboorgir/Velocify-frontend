@@ -8,13 +8,14 @@ const Messages = ({ messages }) => {
         messages.map((message) => {
           return (
             <div
+              key={Math.random()}
               className={`flex flex-col ${
-                message.author == "Person 1"
+                message.author.username == localStorage.getItem("username")
                   ? "self-end bg-[#f3aa6b] text-neutral-900"
                   : ""
               } rounded-lg bg-[#282b30] p-3`}
             >
-              <span>{message.author}</span>
+              <span>{message.author.username}</span>
               <span className="ml-[3px]">{message.content}</span>
             </div>
           );
