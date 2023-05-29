@@ -7,7 +7,7 @@ import Return from "@/components/register/return";
 import CredentialsLogin from "@/components/register/credentialslogin";
 import ThirdPartyLogin from "@/components/register/thirdpartylogin";
 const BACKEND_ENDPOINT =
-  process.env.BACKEND_ENDPOINT || "http://localhost:2000";
+  process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://localhost:2000";
 const Register = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   return (

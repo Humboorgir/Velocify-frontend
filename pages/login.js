@@ -7,7 +7,7 @@ import Return from "@/components/login/return";
 import CredentialsLogin from "@/components/login/credentialslogin";
 import ThirdPartyLogin from "@/components/login/thirdpartylogin";
 const BACKEND_ENDPOINT =
-  process.env.BACKEND_ENDPOINT || "http://localhost:2000";
+  process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://localhost:2000";
 const Login = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   return (

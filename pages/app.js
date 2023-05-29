@@ -6,7 +6,7 @@ import Messages from "@/components/app/messages";
 import MessageInput from "@/components/app/messageinput";
 
 // prettier-ignore
-const BACKEND_ENDPOINT = process.env.BACKEND_ENDPOINT || "http://localhost:2000";
+const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://localhost:2000";
 const App = () => {
   const [messages, setMessages] = useState([]);
   const socketRef = useRef(null);

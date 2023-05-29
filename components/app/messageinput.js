@@ -10,6 +10,7 @@ const MessageInput = ({ messageCreate }) => {
         className="h-12 w-[90%] bg-[#282b30] px-4"
         name="message"
         maxLength={250}
+        autoComplete="off"
       />
       <button className="h-12 w-[max(12%,80px)] rounded-r-md bg-yellowStrong p-3">
         Send
