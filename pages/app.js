@@ -27,8 +27,9 @@ const App = () => {
         return res.json();
       })
       .then((messages) => {
-        console.table(messages);
         setMessages(messages);
+        const messageBox = document.getElementById("messageBox");
+        messageBox.scrollTop = messageBox.scrollHeight;
       });
 
     // initializing socket io
@@ -36,10 +37,6 @@ const App = () => {
     if (socketRef.current) return;
     socketRef.current = io(BACKEND_ENDPOINT);
     global.socket = socketRef.current;
-    // TODO: remove this in production
-    socket.on("connect", () => {
-      console.log("connected to socketio: " + socket.id);
-    });
     socket.on("messageCreate", (message) => {
       console.table(message);
       setMessages((messages) => {
