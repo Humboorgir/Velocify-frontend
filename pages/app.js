@@ -14,21 +14,9 @@ const App = () => {
   useEffect(() => {
     // getting the token
     const token = localStorage.getItem("token");
-    fetch(`${BACKEND_ENDPOINT}/users`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => {
-        // redirect to login if the user is not signed in or has an expired token
-        if (res.status === 401 || res.status === 403)
-          return Router.push("/login");
-        return res.json();
-      })
-      .then((users) => {
-        setUsers(users);
-      });
+    getUsers(token).then((users) => {
+      setUsers(users);
+    });
   }, []);
   return (
     <>
@@ -50,6 +38,18 @@ const App = () => {
   );
 };
 
+async function getUsers(token) {
+  const res = await fetch(`${BACKEND_ENDPOINT}/users`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  // redirect to login if the user is not signed in or has an expired token
+  if (res.status === 401 || res.status === 403) return Router.push("/login");
+  const users = await res.json();
+  return users;
+}
 function messageCreate(e) {
   return;
   // e.preventDefault();
