@@ -2,6 +2,7 @@ import { io } from "socket.io-client";
 import { useState, useEffect, useRef } from "react";
 import Router from "next/router";
 import Head from "@/components/global/head";
+import Users from "@/components/app/users";
 import Messages from "@/components/app/messages";
 import MessageInput from "@/components/app/messageinput";
 
@@ -10,7 +11,6 @@ const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://loc
 const App = () => {
   const [messages, setMessages] = useState([]);
   const socketRef = useRef(null);
-
   useEffect(() => {
     // getting the token
     const token = localStorage.getItem("token");
@@ -50,11 +50,13 @@ const App = () => {
       {/* // container */}
       <div className="absolute grid h-full w-full place-items-center text-textColor">
         {/* chatbox */}
-        <div className="relative flex h-[min(95vh,600px)] w-[min(95vw,700px)] flex-col gap-3 rounded-lg border border-neutral-700 py-1">
+        <div
+          className="relative flex h-[min(95vh,600px)] w-[min(95vw,700px)]
+         flex-col gap-3 rounded-l-lg border border-neutral-700 py-3"
+        >
+          <Users />
           <Messages messages={messages} />
-          <div>
-            <MessageInput messageCreate={messageCreate} />
-          </div>
+          <MessageInput messageCreate={messageCreate} />
         </div>
       </div>
     </>
