@@ -1,16 +1,20 @@
-import { io } from "socket.io-client";
-import { useState, useEffect, useRef } from "react";
-import Router from "next/router";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import Head from "@/components/global/head";
 import Users from "@/components/app/users";
-import VelocifyIcon from "@/components/app/velocifyicon";
+import Messages from "@/components/app/messages";
+import MessageInput from "@/components/app/messageinput";
 
 // prettier-ignore
 const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://localhost:2000";
 
-const App = () => {
-  const [messages, setMessages] = useState([]);
+const Page = () => {
+  const router = useRouter();
+  const { id } = router.query;
+  const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
+  const [messages, setMessages] = useState([]);
+
   useEffect(() => {
     // getting the token
     const token = localStorage.getItem("token");
@@ -20,15 +24,16 @@ const App = () => {
   }, []);
   return (
     <>
-      <Head page="app" />
+      <Head page={user ? user.username : "Loading..."} />
       {/* // container */}
       <div className="absolute flex h-full w-full flex-row items-center justify-center text-textColor">
         {/* chatbox */}
         <div
           className="relative flex h-[min(95vh,600px)] w-[min(95vw,700px)]
-         flex-col gap-3 rounded-l-lg border border-neutral-700 py-3"
+       flex-col gap-3 rounded-l-lg border border-neutral-700 py-3"
         >
-          <VelocifyIcon />
+          <Messages messages={messages} />
+          <MessageInput messageCreate={messageCreate} />
         </div>
         {/* user list  */}
         <Users users={users} />
@@ -36,6 +41,22 @@ const App = () => {
     </>
   );
 };
+
+function messageCreate(e) {
+  return;
+  // e.preventDefault();
+  // const message = e.target.message.value;
+  // e.target.message.value = "";
+  // const socket = global.socket;
+  // const token = localStorage.getItem("token");
+  // const data = {
+  //   token,
+  //   message,
+  // };
+  // console.log("sending the following data:");
+  // console.table(data);
+  // socket.emit("messageCreate", data);
+}
 
 async function getUsers(token) {
   const res = await fetch(`${BACKEND_ENDPOINT}/users`, {
@@ -50,4 +71,4 @@ async function getUsers(token) {
   return users;
 }
 
-export default App;
+export default Page;

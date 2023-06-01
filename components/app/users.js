@@ -1,13 +1,14 @@
+import Link from "next/link";
 const Users = ({ users }) => {
   return (
     <div className="top-0 left-0 flex h-[min(95vh,600px)] w-[200px] flex-col rounded-r-lg border border-neutral-700">
       {users &&
         users.map((user) => {
-          // TODO: use user._id instead of Math.random();
           return (
-            // the whole user box (for each user)
-            <div
-              key={Math.random()}
+            // container
+            <Link
+              href={`/conversations/${user._id}`}
+              key={user._id}
               className="flex w-full flex-row items-center justify-start gap-2 border-b border-neutral-700 p-4
             hover:cursor-pointer hover:bg-[#2e3139] hover:transition-colors"
             >
@@ -28,7 +29,7 @@ const Users = ({ users }) => {
                   Hi there!
                 </span>
               </div>
-            </div>
+            </Link>
           );
         })}
     </div>
