@@ -14,7 +14,8 @@ const Users = () => {
           // the whole user box (for each user)
           <div
             key={Math.random()}
-            className="flex w-full flex-row items-center justify-start gap-2 border-b border-neutral-700 p-4"
+            className="flex w-full flex-row items-center justify-start gap-2 border-b border-neutral-700 p-4
+            hover:cursor-pointer hover:bg-[#2e3139] hover:transition-colors"
           >
             {/* profile picture  */}
             <div className="relative ">
