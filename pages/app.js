@@ -10,11 +10,11 @@ import MessageInput from "@/components/app/messageinput";
 const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://localhost:2000";
 const App = () => {
   const [messages, setMessages] = useState([]);
-  const socketRef = useRef(null);
+  const [users, setUsers] = useState([]);
   useEffect(() => {
     // getting the token
     const token = localStorage.getItem("token");
-    fetch(`${BACKEND_ENDPOINT}/messages`, {
+    fetch(`${BACKEND_ENDPOINT}/users`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -26,56 +26,44 @@ const App = () => {
           return Router.push("/login");
         return res.json();
       })
-      .then((messages) => {
-        setMessages(messages);
-        const messageBox = document.getElementById("messageBox");
-        messageBox.scrollTop = messageBox.scrollHeight;
+      .then((users) => {
+        setUsers(users);
       });
-
-    // initializing socket io
-    // first check if socket.io is already initialized
-    if (socketRef.current) return;
-    socketRef.current = io(BACKEND_ENDPOINT);
-    global.socket = socketRef.current;
-    socket.on("messageCreate", (message) => {
-      console.table(message);
-      setMessages((messages) => {
-        return [...messages, message];
-      });
-    });
   }, []);
   return (
     <>
       <Head page="app" />
       {/* // container */}
-      <div className="absolute grid h-full w-full place-items-center text-textColor">
+      <div className="absolute flex h-full w-full flex-row items-center justify-center text-textColor">
         {/* chatbox */}
         <div
           className="relative flex h-[min(95vh,600px)] w-[min(95vw,700px)]
          flex-col gap-3 rounded-l-lg border border-neutral-700 py-3"
         >
-          <Users />
           <Messages messages={messages} />
           <MessageInput messageCreate={messageCreate} />
         </div>
+        {/* user list  */}
+        <Users users={users} />
       </div>
     </>
   );
 };
 
 function messageCreate(e) {
-  e.preventDefault();
-  const message = e.target.message.value;
-  e.target.message.value = "";
-  const socket = global.socket;
-  const token = localStorage.getItem("token");
-  const data = {
-    token,
-    message,
-  };
-  console.log("sending the following data:");
-  console.table(data);
-  socket.emit("messageCreate", data);
+  return;
+  // e.preventDefault();
+  // const message = e.target.message.value;
+  // e.target.message.value = "";
+  // const socket = global.socket;
+  // const token = localStorage.getItem("token");
+  // const data = {
+  //   token,
+  //   message,
+  // };
+  // console.log("sending the following data:");
+  // console.table(data);
+  // socket.emit("messageCreate", data);
 }
 
 export default App;

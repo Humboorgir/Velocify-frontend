@@ -1,13 +1,6 @@
-// test data
-const users = [
-  { username: "Humboorgir" },
-  { username: "Tqkel" },
-  { username: "Levitage" },
-  { username: "ItzSad10" },
-];
-const Users = () => {
+const Users = ({ users }) => {
   return (
-    <div className="absolute top-0 left-full flex h-full w-[200px] flex-col rounded-r-lg border border-neutral-700">
+    <div className="top-0 left-0 flex h-[min(95vh,600px)] w-[200px] flex-col rounded-r-lg border border-neutral-700">
       {users.map((user) => {
         // TODO: use user._id instead of Math.random();
         return (
