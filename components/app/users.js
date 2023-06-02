@@ -1,7 +1,16 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 const Users = ({ users }) => {
+  const router = useRouter();
+  const isOnApp = router.pathname === "/app";
   return (
-    <div className="top-0 left-0 flex h-[min(95vh,600px)] w-[200px] flex-col rounded-r-lg border border-neutral-700">
+    <div
+      className={`top-0 left-0 
+      ${isOnApp ? "" : "hidden"}
+       h-[min(95vh,600px)] flex-col rounded-r-lg border border-neutral-700 md:w-[200px]
+        ${isOnApp ? "" : "md"}:flex 
+         w-[95vw]`}
+    >
       {users &&
         users.map((user) => {
           return (

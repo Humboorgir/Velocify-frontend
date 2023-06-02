@@ -25,8 +25,8 @@ const App = () => {
       <div className="absolute flex h-full w-full flex-row items-center justify-center text-textColor">
         {/* chatbox */}
         <div
-          className="relative flex h-[min(95vh,600px)] w-[min(95vw,700px)]
-         flex-col gap-3 rounded-l-lg border border-neutral-700 py-3"
+          className="relative hidden h-[min(95vh,600px)] w-[min(95vw,700px)]
+         flex-col gap-3 rounded-l-lg border border-neutral-700 py-3 md:flex "
         >
           <VelocifyIcon />
         </div>
