@@ -32,7 +32,8 @@ const Page = () => {
     });
 
     getConversation(token, id).then((conversation) => {
-      if (conversation === null) setMessages([]);
+      if (conversation === null || !conversation.messages)
+        return setMessages([]);
       setMessages(conversation.messages);
       const myUsername = localStorage.getItem("username");
       const otherUser = conversation.users.filter(
