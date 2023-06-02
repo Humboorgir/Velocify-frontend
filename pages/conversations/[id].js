@@ -54,6 +54,12 @@ const Page = () => {
       });
     });
   }, [router.query]);
+
+  useEffect(() => {
+    console.log("messages change detected");
+    const messageBox = document.getElementById("messageBox");
+    messageBox.scrollTop = messageBox.scrollHeight;
+  }, [messages]);
   return (
     <>
       <Head page={user.username} />
@@ -86,8 +92,6 @@ function messageCreate(e) {
     message,
     userId,
   };
-  console.log("sending the following data:");
-  console.table(data);
   socket.emit("messageCreate", data);
 }
 
