@@ -10,7 +10,10 @@ import MessageInput from "@/components/app/messageinput";
 const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://localhost:2000";
 
 const Page = () => {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    username: "Loading...",
+    _id: "Loading...",
+  });
   const [users, setUsers] = useState([]);
   const [messages, setMessages] = useState([]);
 
@@ -19,6 +22,7 @@ const Page = () => {
 
   useEffect(() => {
     const { id } = router.query;
+    global.userId = id;
     if (!id) return;
     // getting the token
     const token = localStorage.getItem("token");
@@ -27,9 +31,15 @@ const Page = () => {
       setUsers(users);
     });
 
-    getConversation(token, id).then((conversationData) => {
-      if (conversationData === null) setMessages([]);
-      console.table(conversationData);
+    getConversation(token, id).then((conversation) => {
+      if (conversation === null) setMessages([]);
+      setMessages(conversation.messages);
+      const myUsername = localStorage.getItem("username");
+      const otherUser = conversation.users.filter(
+        (user) => user.username !== myUsername
+      )[0];
+
+      setUser(otherUser);
     });
 
     // initializing socket.io
@@ -45,7 +55,7 @@ const Page = () => {
   }, [router.query]);
   return (
     <>
-      <Head page={user ? user.username : "Loading..."} />
+      <Head page={user.username} />
       {/* // container */}
       <div className="absolute flex h-full w-full flex-row items-center justify-center text-textColor">
         {/* chatbox */}
@@ -69,9 +79,11 @@ function messageCreate(e) {
   e.target.message.value = "";
   const socket = global.socket;
   const token = localStorage.getItem("token");
+  const userId = global.userId;
   const data = {
     token,
     message,
+    userId,
   };
   console.log("sending the following data:");
   console.table(data);
