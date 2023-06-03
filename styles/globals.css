@@ -39,16 +39,16 @@
     @apply h-fit w-fit py-3 px-5 text-textColorWeak no-underline;
   }
 }
-.credentialsInput:-webkit-autofill {
+.customAutofillStyle:-webkit-autofill {
   box-shadow: 0 0 0px 1000px #17191d inset;
   -webkit-box-shadow: 0 0 0px 1000px #17191d inset;
-  -webkit-text-fill-color: var(--normal-text-color);
+  -webkit-text-fill-color: #d7d7d7;
   filter: none;
 }
-.credentialsInput:autofill {
+.customAutofillStyle:autofill {
   box-shadow: 0 0 0px 1000px #17191d inset;
   -webkit-box-shadow: 0 0 0px 1000px #17191d inset;
-  -webkit-text-fill-color: var(--normal-text-color);
+  -webkit-text-fill-color: #d7d7d7;
   filter: none;
 }
 input:focus {

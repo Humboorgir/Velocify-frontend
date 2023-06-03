@@ -8,9 +8,8 @@ const Username = () => {
         Username
       </label>
       <input
-        className="m-auto block w-[300px] rounded-md border-[3px] border-textColorSemiWeak bg-inherit p-[10px]
-        text-[15px] placeholder-[10px] placeholder-textColorWeak placeholder:text-[14px]
-        autofill:text-textColorSemiWeak autofill:shadow-autofill"
+        className="customAutofillStyle m-auto block w-[300px] rounded-md border-[3px] border-textColorSemiWeak bg-inherit p-[10px]
+        text-[15px] placeholder-[10px] placeholder-textColorWeak placeholder:text-[14px]"
         type="text"
         id="username"
         name="username"

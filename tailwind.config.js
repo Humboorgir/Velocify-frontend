@@ -8,7 +8,6 @@ module.exports = {
   theme: {
     extend: {
       boxShadow: {
-        autofill: "0 0 0px 1000px inherit inset",
         glow: "0px 0px 100px #f5c40067",
       },
       colors: {
