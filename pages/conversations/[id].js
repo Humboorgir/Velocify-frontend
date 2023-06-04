@@ -32,6 +32,9 @@ const Page = () => {
     const token = localStorage.getItem("token");
 
     getUsers(token).then((users) => {
+      // TODO: this would break as soon as two users have the same username,
+      // handle this in a different way
+      users = users.filter((user) => user.username !== username);
       setUsers(users);
     });
 
