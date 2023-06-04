@@ -53,7 +53,8 @@ const Page = () => {
     // initializing socket.io
     // first check if socket.io is already initialized
     if (socketRef.current) return;
-    socketRef.current = io(BACKEND_ENDPOINT);
+    socketRef.current = io(BACKEND_ENDPOINT, { query: { token } });
+    socketRef.current.token = token;
     global.socket = socketRef.current;
     socket.on("messageCreate", (message) => {
       setMessages((messages) => {
