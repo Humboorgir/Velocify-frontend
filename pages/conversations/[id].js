@@ -21,9 +21,13 @@ const Page = () => {
   const socketRef = useRef(null);
 
   useEffect(() => {
+    const username = localStorage.getItem("username");
+    global.username = username;
+
     const { id } = router.query;
-    global.userId = id;
     if (!id) return;
+    global.userId = id;
+
     // getting the token
     const token = localStorage.getItem("token");
 
@@ -39,7 +43,7 @@ const Page = () => {
       const otherUser = conversation.users.filter(
         (user) => user.username !== myUsername
       )[0];
-
+      console.log(otherUser);
       setUser(otherUser);
     });
 
@@ -56,7 +60,6 @@ const Page = () => {
   }, [router.query]);
 
   useEffect(() => {
-    console.log("messages change detected");
     const messageBox = document.getElementById("messageBox");
     messageBox.scrollTop = messageBox.scrollHeight;
   }, [messages]);
@@ -70,7 +73,7 @@ const Page = () => {
           className="relative flex h-[min(95vh,600px)] w-[min(95vw,700px)]
        flex-col gap-3 rounded-l-lg border border-neutral-700 py-3"
         >
-          <Messages messages={messages} />
+          <Messages messages={messages} username={global.username} />
           <MessageInput messageCreate={messageCreate} />
         </div>
         {/* user list  */}

@@ -1,4 +1,5 @@
-const Messages = ({ messages }) => {
+import Image from "next/image";
+const Messages = ({ messages, username }) => {
   return (
     <div
       className="absolute flex h-[84%] w-[100%] flex-col items-start gap-3 overflow-y-scroll px-6"
@@ -9,18 +10,47 @@ const Messages = ({ messages }) => {
         messages.map((message) => {
           // if the authors username is equal to the user reading it,
           // set self-align to end and background color to orange
-          const messageStyle =
-            message.author.username == localStorage.getItem("username")
-              ? "self-end bg-[#f3aa6b] text-neutral-900"
-              : "";
+          const sentByMe = message.author.username == username;
           // TODO: change key from Math.random() to the actual message id
           return (
             <div
               key={Math.random()}
-              className={`message flex flex-col ${messageStyle} rounded-lg bg-[#282b30] p-3`}
+              className={`message flex flex-row items-center gap-2 ${
+                sentByMe ? "self-end" : "self-start"
+              }`}
             >
-              <span>{message.author.username}</span>
-              <span className="ml-[3px]">{message.content}</span>
+              {/* display the profile picture only if the message is NOT sent by me  */}
+              {!sentByMe && (
+                <Image
+                  className={`h-[50px] w-[50px] rounded-full bg-neutral-500`}
+                  src={"/images/defaultUser.svg"}
+                  height={40}
+                  width={40}
+                  alt="user profile picture"
+                />
+              )}
+              {/* username and message container*/}
+              <div
+                className={`flex flex-col rounded-lg ${
+                  sentByMe ? "bg-[#f3aa6b]" : "bg-[#282b30]"
+                } p-3`}
+              >
+                {/* username */}
+                <span
+                  className={`mb-1 ${
+                    sentByMe ? "text-neutral-900" : "text-textColor"
+                  } hover:cursor-pointer hover:underline`}
+                >
+                  {message.author.username}
+                </span>
+                {/* message content  */}
+                <span
+                  // prettier-ignore
+                  className={`ml-[3px] ${sentByMe ? 'text-neutral-800' : 'text-textColorSemiWeak' }`}
+                >
+                  {message.content}
+                </span>
+              </div>
             </div>
           );
         })}
