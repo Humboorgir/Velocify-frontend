@@ -34,14 +34,16 @@ const Messages = ({ messages, username }) => {
                   sentByMe ? "bg-[#f3aa6b]" : "bg-[#282b30]"
                 } p-3`}
               >
-                {/* username */}
-                <span
-                  className={`mb-1 ${
-                    sentByMe ? "text-neutral-900" : "text-textColor"
-                  } hover:cursor-pointer hover:underline`}
-                >
-                  {message.author.username}
-                </span>
+                {/* username (don't display if the message is sent by the user himself)*/}
+                {!sentByMe && (
+                  <span
+                    className={`mb-1 ${
+                      sentByMe ? "text-neutral-900" : "text-textColor"
+                    } hover:cursor-pointer hover:underline`}
+                  >
+                    {message.author.username}
+                  </span>
+                )}
                 {/* message content  */}
                 <span
                   // prettier-ignore
