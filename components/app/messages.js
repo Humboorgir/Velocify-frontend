@@ -11,10 +11,9 @@ const Messages = ({ messages, username }) => {
           // if the authors username is equal to the user reading it,
           // set self-align to end and background color to orange
           const sentByMe = message.author.username == username;
-          // TODO: change key from Math.random() to the actual message id
           return (
             <div
-              key={Math.random()}
+              key={message._id}
               className={`message flex flex-row items-center gap-2 ${
                 sentByMe ? "self-end" : "self-start"
               }`}
