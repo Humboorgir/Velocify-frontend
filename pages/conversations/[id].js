@@ -21,12 +21,12 @@ const Page = () => {
   const socketRef = useRef(null);
 
   useEffect(() => {
-    const username = localStorage.getItem("username");
-    global.username = username;
-
     const { id } = router.query;
     if (!id) return;
     global.userId = id;
+
+    const username = localStorage.getItem("username");
+    global.username = username;
 
     // getting the token
     const token = localStorage.getItem("token");
