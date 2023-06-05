@@ -47,7 +47,7 @@ const Messages = ({ messages, username }) => {
                 {/* message content  */}
                 <span
                   // prettier-ignore
-                  className={`ml-[3px] ${sentByMe ? 'text-neutral-800' : 'text-textColorSemiWeak' }`}
+                  className={`ml-[3px] break-words max-w-[60vw] md:max-w-[560px] ${sentByMe ? 'text-neutral-800' : 'text-textColorSemiWeak' }`}
                 >
                   {message.content}
                 </span>
