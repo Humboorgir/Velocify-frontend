@@ -20,14 +20,32 @@ const Page = () => {
   const router = useRouter();
   const socketRef = useRef(null);
 
+  function messageCreate(e) {
+    e.preventDefault();
+    const message = e.target.message.value;
+    e.target.message.value = "";
+    const socket = global.socket;
+    const token = localStorage.getItem("token");
+    const userId = global.userId;
+    const data = {
+      token,
+      message,
+      userId,
+    };
+    socket.emit("messageCreate", data, (message) => {
+      if (!message) console.log("no callback");
+      console.log(message);
+      setMessages((messages) => [...messages, message]);
+    });
+  }
   useEffect(() => {
     const { id } = router.query;
     if (!id) return;
     global.userId = id;
 
-    const username = localStorage.getItem("username");
-    global.username = username;
-
+    const user = JSON.parse(localStorage.getItem("user"));
+    global.username = user.username;
+    global.myId = user._id;
     // getting the token
     const token = localStorage.getItem("token");
 
@@ -56,10 +74,16 @@ const Page = () => {
     socketRef.current = io(BACKEND_ENDPOINT, { query: { token } });
     socketRef.current.token = token;
     global.socket = socketRef.current;
+
     socket.on("messageCreate", (message) => {
-      setMessages((messages) => {
-        return [...messages, message];
-      });
+      // if the message is sent from anyone BUT the user you're chatting with, return;
+      // will handle this differently later on
+      if (
+        message.author._id !== global.myId &&
+        message.author._id !== global.userId
+      )
+        return;
+      setMessages((messages) => [...messages, message]);
     });
   }, [router.query]);
 
@@ -67,6 +91,7 @@ const Page = () => {
     const messageBox = document.getElementById("messageBox");
     messageBox.scrollTop = messageBox.scrollHeight;
   }, [messages]);
+
   return (
     <>
       <Head page={user.username} />
@@ -86,21 +111,6 @@ const Page = () => {
     </>
   );
 };
-
-function messageCreate(e) {
-  e.preventDefault();
-  const message = e.target.message.value;
-  e.target.message.value = "";
-  const socket = global.socket;
-  const token = localStorage.getItem("token");
-  const userId = global.userId;
-  const data = {
-    token,
-    message,
-    userId,
-  };
-  socket.emit("messageCreate", data);
-}
 
 async function getUsers(token) {
   const res = await fetch(`${BACKEND_ENDPOINT}/users`, {

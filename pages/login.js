@@ -67,8 +67,9 @@ async function handleSubmit(e, setIsProcessing) {
        SameSite=Strict;
        path=/auth/;
        domain=${BACKEND_ENDPOINT};`;
+      const user = JSON.stringify(res.user);
       localStorage.setItem("token", res.accessToken);
-      localStorage.setItem("username", res.username);
+      localStorage.setItem("user", user);
       Router.push("/app");
       break;
   }
