@@ -17,7 +17,8 @@ const App = () => {
     getUsers(token).then((users) => {
       // TODO: this would break as soon as two users have the same username,
       // handle this in a different way
-      const username = localStorage.getItem("username");
+      const user = JSON.parse(localStorage.getItem("user"));
+      const username = user.username;
       users = users.filter((user) => user.username !== username);
       setUsers(users);
     });
