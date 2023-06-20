@@ -56,13 +56,12 @@ const Page = () => {
       setUsers(users);
     });
 
-    getConversation(token, id).then((conversation) => {
-      if (conversation === null || !conversation.messages)
-        return setMessages([]);
-      setMessages(conversation.messages);
+    getChat(token, id).then((chat) => {
+      if (chat === null || !chat.messages) return setMessages([]);
+      setMessages(chat.messages);
       const myUsername = localStorage.getItem("username");
-      const otherUser = conversation.users.filter(
-        (user) => user.username !== myUsername
+      const otherUser = chat.participants.filter(
+        (participant) => participant.username !== myUsername
       )[0];
       console.log(otherUser);
       setUser(otherUser);
@@ -125,8 +124,8 @@ async function getUsers(token) {
   return users;
 }
 
-async function getConversation(token, id) {
-  const res = await fetch(`${BACKEND_ENDPOINT}/conversation/${id}`, {
+async function getChat(token, id) {
+  const res = await fetch(`${BACKEND_ENDPOINT}/chat/${id}`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -134,8 +133,8 @@ async function getConversation(token, id) {
   });
   // redirect to login if the user is not signed in or has an expired token
   if (res.status === 401 || res.status === 403) return Router.push("/login");
-  const conversationData = await res.json();
-  return conversationData;
+  const chatData = await res.json();
+  return chatData;
 }
 
 export default Page;
