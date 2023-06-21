@@ -8,7 +8,7 @@ const User = ({ user }) => {
         href={`/chat/${user._id}`}
         key={user._id}
         className="flex w-full flex-row items-center justify-start gap-2 rounded-lg
-         p-4 hover:cursor-pointer hover:bg-[#2e3139] hover:transition-colors"
+        p-4 first-of-type:mt-2 hover:cursor-pointer hover:bg-[#2e3139] hover:transition-colors"
       >
         {/* profile picture  */}
         <div className="relative ">

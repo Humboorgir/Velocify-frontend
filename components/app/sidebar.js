@@ -10,7 +10,7 @@ const Sidebar = ({ users }) => {
     <div
       className={`top-0 left-0 h-screen py-4
       ${isOnApp ? "" : "hidden"}
-       h-[min(95vh,600px)] flex-col bg-[#212121] md:w-[250px]
+       h-[min(95vh,600px)] flex-col bg-[#212121] md:w-[450px]
         ${isOnApp ? "" : "md"}:flex 
          relative w-[95vw] `}
     >
