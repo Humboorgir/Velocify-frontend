@@ -95,7 +95,9 @@ const Page = () => {
     <>
       <Head page={user.username} />
       {/* // container */}
-      <div className="absolute flex h-full w-full flex-row items-center justify-center text-textColor">
+      <div className="flex h-screen w-screen flex-row items-center text-textColor">
+        <Sidebar users={users} />
+
         {/* chatbox */}
         <div
           className="relative flex h-[min(95vh,600px)] w-[min(95vw,700px)]
@@ -104,8 +106,7 @@ const Page = () => {
           <Messages messages={messages} username={global.username} />
           <MessageInput messageCreate={messageCreate} />
         </div>
-        {/* user list  */}
-        <Sidebar users={users} />
+        {/* chat box end */}
       </div>
     </>
   );

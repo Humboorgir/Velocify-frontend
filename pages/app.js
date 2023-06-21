@@ -27,7 +27,9 @@ const App = () => {
     <>
       <Head page="app" />
       {/* // container */}
-      <div className="absolute flex h-full w-full flex-row items-center justify-center text-textColor">
+      <div className="flex h-full w-full flex-row items-center text-textColor">
+        {/* user list  */}
+        <Sidebar users={users} />
         {/* chatbox */}
         <div
           className="relative hidden h-[min(95vh,600px)] w-[min(95vw,700px)]
@@ -35,8 +37,6 @@ const App = () => {
         >
           <VelocifyIcon />
         </div>
-        {/* user list  */}
-        <Sidebar users={users} />
       </div>
     </>
   );
