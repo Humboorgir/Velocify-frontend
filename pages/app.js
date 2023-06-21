@@ -2,7 +2,7 @@ import { io } from "socket.io-client";
 import { useState, useEffect, useRef } from "react";
 import Router from "next/router";
 import Head from "@/components/global/head";
-import Users from "@/components/app/users";
+import Sidebar from "@/components/app/sidebar";
 import VelocifyIcon from "@/components/app/velocifyicon";
 
 // prettier-ignore
@@ -36,7 +36,7 @@ const App = () => {
           <VelocifyIcon />
         </div>
         {/* user list  */}
-        <Users users={users} />
+        <Sidebar users={users} />
       </div>
     </>
   );

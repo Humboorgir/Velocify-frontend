@@ -2,7 +2,7 @@ import { io } from "socket.io-client";
 import Router, { useRouter } from "next/router";
 import { useEffect, useState, useRef } from "react";
 import Head from "@/components/global/head";
-import Users from "@/components/app/users";
+import Sidebar from "@/components/app/sidebar";
 import Messages from "@/components/app/messages";
 import MessageInput from "@/components/app/messageinput";
 
@@ -105,7 +105,7 @@ const Page = () => {
           <MessageInput messageCreate={messageCreate} />
         </div>
         {/* user list  */}
-        <Users users={users} />
+        <Sidebar users={users} />
       </div>
     </>
   );
