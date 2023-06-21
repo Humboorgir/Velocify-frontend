@@ -1,4 +1,7 @@
+import { RiSendPlaneFill } from "react-icons/ri";
+
 import { useRouter } from "next/router";
+
 const MessageInput = ({ messageCreate }) => {
   const router = useRouter();
   // true if the user is NOT on /app
@@ -6,19 +9,22 @@ const MessageInput = ({ messageCreate }) => {
   return (
     showInput && (
       <form
-        className="absolute bottom-0 left-0 flex h-fit w-full flex-row items-center bg-inherit
-     md:bottom-1 md:left-auto md:mx-6 md:h-[12%] md:w-[93.5%]"
+        className="mt-auto flex h-fit flex-row items-center justify-center
+     bg-inherit md:left-auto md:mx-6 md:mb-4"
         onSubmit={messageCreate}
       >
         <input
-          placeholder="Message Person 2"
-          className="h-12 w-[90%] bg-[#282b30] px-4"
+          placeholder="Message"
+          className="h-12 w-[75%] rounded-l-full bg-[#282b30] px-6 md:w-[65%]"
           name="message"
           maxLength={250}
           autoComplete="off"
         />
-        <button className="h-12 w-[max(12%,80px)] rounded-r-md bg-yellowStrong p-3">
-          Send
+        <button
+          className="h-12 w-fit rounded-r-full bg-[#282b30] p-3 pr-6
+        text-2xl text-yellow"
+        >
+          <RiSendPlaneFill />
         </button>
       </form>
     )

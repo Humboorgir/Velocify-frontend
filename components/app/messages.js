@@ -2,7 +2,7 @@ import Image from "next/image";
 const Messages = ({ messages, username }) => {
   return (
     <div
-      className="absolute flex h-[84%] w-[100%] flex-col items-start gap-3 overflow-y-scroll px-[10%]"
+      className="flex h-[90%] w-[100%] flex-col items-start gap-3 overflow-y-scroll px-[10%] pb-2 md:pb-0"
       id="messageBox"
     >
       {/* show messages if there are any */}
@@ -14,9 +14,8 @@ const Messages = ({ messages, username }) => {
           return (
             <div
               key={message._id}
-              className={`message flex flex-row items-center gap-2 ${
-                sentByMe ? "self-end" : "self-start"
-              }`}
+              className={`message flex flex-row items-center gap-2
+              ${sentByMe ? "self-end" : "self-start"}`}
             >
               {/* display the profile picture only if the message is NOT sent by me  */}
               {!sentByMe && (
@@ -47,8 +46,10 @@ const Messages = ({ messages, username }) => {
                 {/* message content  */}
                 <span
                   // prettier-ignore
-                  className={`ml-[3px] break-words max-w-[60vw] md:max-w-[560px] ${sentByMe ? 'text-neutral-800' : 'text-textColorSemiWeak' }`}
+                  className={`ml-[3px] break-words max-w-[74vw] md:max-w-[50vw]
+                   ${sentByMe ? 'text-neutral-800' : 'text-textColorSemiWeak' }`}
                 >
+                  {/* max-w-[60vw] md:max-w-[400px]  */}
                   {message.content}
                 </span>
               </div>
