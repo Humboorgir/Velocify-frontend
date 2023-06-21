@@ -101,7 +101,7 @@ const Page = () => {
         {/* chatbox */}
         <div
           className="relative flex h-[min(95vh,600px)] w-[min(95vw,700px)]
-       flex-col gap-3 rounded-l-lg border border-neutral-700 py-3"
+       flex-col gap-3 rounded-l-lg bg-stone-900 py-3"
         >
           <Messages messages={messages} username={global.username} />
           <MessageInput messageCreate={messageCreate} />

@@ -6,7 +6,7 @@ const MessageInput = ({ messageCreate }) => {
   return (
     showInput && (
       <form
-        className="absolute bottom-0 left-0 flex h-fit w-full flex-row items-center bg-bgColor
+        className="absolute bottom-0 left-0 flex h-fit w-full flex-row items-center bg-inherit
      md:bottom-1 md:left-auto md:mx-6 md:h-[12%] md:w-[93.5%]"
         onSubmit={messageCreate}
       >

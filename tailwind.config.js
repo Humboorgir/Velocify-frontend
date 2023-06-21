@@ -11,6 +11,7 @@ module.exports = {
         glow: "0px 0px 100px #f5c40067",
       },
       colors: {
+        surface: "#212121",
         link: "#1271ff",
         bgColor: "#1e2025",
         bgColorStrong: "#17191d",
