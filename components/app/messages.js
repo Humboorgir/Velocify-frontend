@@ -2,7 +2,7 @@ import Image from "next/image";
 const Messages = ({ messages, username }) => {
   return (
     <div
-      className="absolute flex h-[84%] w-[100%] flex-col items-start gap-3 overflow-y-scroll px-6"
+      className="absolute flex h-[84%] w-[100%] flex-col items-start gap-3 overflow-y-scroll px-[10%]"
       id="messageBox"
     >
       {/* show messages if there are any */}

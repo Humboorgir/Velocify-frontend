@@ -95,13 +95,13 @@ const Page = () => {
     <>
       <Head page={user.username} />
       {/* // container */}
-      <div className="flex h-screen w-screen flex-row items-center text-textColor">
+      <div className="flex h-screen w-screen items-end text-textColor">
         <Sidebar users={users} />
 
         {/* chatbox */}
         <div
-          className="relative flex h-[min(95vh,600px)] w-[min(95vw,700px)]
-       flex-col gap-3 rounded-l-lg bg-stone-900 py-3"
+          className="relative flex h-[min(95vh,600px)] w-[100%] flex-col
+       gap-3 rounded-l-lg bg-stone-900  py-3"
         >
           <Messages messages={messages} username={global.username} />
           <MessageInput messageCreate={messageCreate} />
