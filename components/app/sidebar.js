@@ -8,9 +8,9 @@ const Sidebar = ({ users }) => {
   const isOnApp = router.pathname === "/app";
   return (
     <div
-      className={`absolute top-0 left-0 h-screen
+      className={`top-0 left-0 h-screen py-4
       ${isOnApp ? "" : "hidden"}
-       h-[min(95vh,600px)] flex-col bg-[#212121] md:w-[220px]
+       h-[min(95vh,600px)] flex-col bg-[#212121] md:w-[250px]
         ${isOnApp ? "" : "md"}:flex 
          relative w-[95vw] `}
     >
