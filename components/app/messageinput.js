@@ -10,14 +10,14 @@ const MessageInput = ({ messageCreate }) => {
     showInput && (
       <form
         className="mt-auto flex h-fit flex-row items-center justify-center
-     bg-inherit md:left-auto md:mx-6 md:mb-4"
+     bg-inherit md:mx-6 md:mb-4"
         onSubmit={messageCreate}
       >
         <input
           placeholder="Message"
           className="h-12 w-[75%] rounded-l-full bg-[#282b30] px-6 md:w-[70%]"
           name="message"
-          maxLength={250}
+          maxLength={1000}
           autoComplete="off"
         />
         <button

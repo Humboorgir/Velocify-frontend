@@ -4,14 +4,14 @@ const Message = ({ message, sentByMe }) => {
   return (
     <div
       key={message._id}
-      className={`message flex max-w-[80%] flex-row items-center gap-2
+      className={`message flex max-w-[90%] flex-row items-center gap-2
           ${sentByMe ? "self-end" : "self-start"}`}
     >
       {!sentByMe && <ProfilePicture />}
 
       {/* message container*/}
       <div
-        className={`flex max-w-[80%] flex-col rounded-lg  ${
+        className={`flex max-w-[100%] flex-col rounded-lg  ${
           sentByMe ? "bg-[#f3aa6b]" : "bg-[#282b30]"
         } p-3`}
       >
@@ -19,13 +19,13 @@ const Message = ({ message, sentByMe }) => {
           <Username username={message.author.username} sentByMe={sentByMe} />
         )}
         {/* message content  */}
-        <span
+        <div
           // prettier-ignore
-          className={`ml-[3px] break-words max-w-[80%]
+          className={`ml-[3px] break-words
                ${sentByMe ? 'text-neutral-800' : 'text-textColorSemiWeak' }`}
         >
           {message.content}
-        </span>
+        </div>
       </div>
     </div>
   );
