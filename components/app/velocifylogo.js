@@ -1,7 +1,7 @@
 const VelocifyLogo = () => {
   return (
     /* // image box container */
-    <div className="absolute top-0 left-0 flex h-full w-full flex-col items-center justify-center gap-4">
+    <div className="absolute bottom-8 left-0 flex h-full w-full flex-col items-center justify-center gap-4">
       {/* image container */}
       <div
         className="relative before:absolute before:top-0 
