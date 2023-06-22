@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Router from "next/router";
 import Head from "@/components/global/head";
 import Sidebar from "@/components/app/sidebar";
-import VelocifyLogo from "@/components/app/velocifyLogo";
+import VelocifyLogo from "@/components/app/velocifylogo";
 
 // prettier-ignore
 const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://localhost:2000";

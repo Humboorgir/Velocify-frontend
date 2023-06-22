@@ -15,7 +15,7 @@ const VelocifyLogo = () => {
       </div>
       {/* text  */}
       <span className="brightness-[60%] grayscale">
-        Select a channel to get started
+        Select a DM to get started
       </span>
     </div>
   );
