@@ -11,8 +11,7 @@ const Messages = ({ messages, username }) => {
         {messages &&
           messages.map((message) => {
             // true if the authors username is equal to the user reading it,
-            // const sentByMe = message.author.username == username;
-            const sentByMe = false;
+            const sentByMe = message.author.username == username;
             return <Message message={message} sentByMe={sentByMe} />;
           })}
       </div>
