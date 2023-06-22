@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Router from "next/router";
 import Head from "@/components/global/head";
 import Sidebar from "@/components/app/sidebar";
-import VelocifyIcon from "@/components/app/velocifyicon";
+import VelocifyLogo from "@/components/app/velocifyLogo";
 
 // prettier-ignore
 const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://localhost:2000";
@@ -32,7 +32,7 @@ const App = () => {
         <Sidebar users={users} />
         {/* chatbox */}
         <div className="relative hidden h-screen w-full flex-col bg-stone-900 py-3 md:flex">
-          <VelocifyIcon />
+          <VelocifyLogo />
         </div>
       </div>
     </>

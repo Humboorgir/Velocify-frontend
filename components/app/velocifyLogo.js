@@ -1,4 +1,4 @@
-const VelocifyIcon = () => {
+const VelocifyLogo = () => {
   return (
     /* // image box container */
     <div className="absolute top-0 left-0 flex h-full w-full flex-col items-center justify-center gap-4">
@@ -21,4 +21,4 @@ const VelocifyIcon = () => {
   );
 };
 
-export default VelocifyIcon;
+export default VelocifyLogo;
