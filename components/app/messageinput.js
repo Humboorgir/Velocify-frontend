@@ -9,8 +9,8 @@ const MessageInput = ({ messageCreate }) => {
   return (
     showInput && (
       <form
-        className="mt-auto flex h-fit flex-row items-center justify-center
-     bg-inherit md:mx-6 md:mb-4"
+        className="mt-auto mb-4 flex h-fit flex-row items-center
+     justify-center bg-inherit pt-1 md:mx-6"
         onSubmit={messageCreate}
       >
         <input
