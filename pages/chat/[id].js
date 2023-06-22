@@ -3,6 +3,7 @@ import Router, { useRouter } from "next/router";
 import { useEffect, useState, useRef } from "react";
 import Head from "@/components/global/head";
 import Sidebar from "@/components/app/sidebar";
+import UserInfo from "@/components/app/userinfo";
 import Messages from "@/components/app/messages";
 import MessageInput from "@/components/app/messageinput";
 
@@ -43,6 +44,7 @@ const Page = () => {
     if (!id) return;
     global.userId = id;
 
+    // selectedUser.classList.add("selected");
     const user = JSON.parse(localStorage.getItem("user"));
     global.username = user.username;
     global.myId = user._id;
@@ -98,9 +100,10 @@ const Page = () => {
 
         {/* chatbox */}
         <div
-          className="flex h-full w-[100%] flex-col justify-between bg-stone-900 py-3
+          className="relative flex h-full w-[100%] flex-col justify-between bg-stone-900 py-3
          md:max-w-[calc(100%-400px)] md:pt-6"
         >
+          <UserInfo user={user} />
           <Messages messages={messages} username={global.username} />
           <MessageInput messageCreate={messageCreate} />
         </div>

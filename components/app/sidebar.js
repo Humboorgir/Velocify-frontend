@@ -1,7 +1,6 @@
 import Users from "@/components/app/users";
 import SidebarHeader from "@/components/app/sidebarheader";
 import { useRouter } from "next/router";
-import { useState } from "react";
 
 const Sidebar = ({ users }) => {
   const router = useRouter();
