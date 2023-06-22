@@ -15,7 +15,7 @@ const MessageInput = ({ messageCreate }) => {
       >
         <input
           placeholder="Message"
-          className="h-12 w-[75%] rounded-l-full bg-[#282b30] px-6 md:w-[65%]"
+          className="h-12 w-[75%] rounded-l-full bg-[#282b30] px-6 md:w-[70%]"
           name="message"
           maxLength={250}
           autoComplete="off"

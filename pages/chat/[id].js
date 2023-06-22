@@ -99,7 +99,7 @@ const Page = () => {
         <Sidebar users={users} />
 
         {/* chatbox */}
-        <div className="relative flex h-full w-full flex-col bg-stone-900 py-3">
+        <div className="relative flex h-full w-full flex-col bg-stone-900 py-3 md:pt-6">
           <Messages messages={messages} username={global.username} />
           <MessageInput messageCreate={messageCreate} />
         </div>
