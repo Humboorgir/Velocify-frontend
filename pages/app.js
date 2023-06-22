@@ -31,10 +31,7 @@ const App = () => {
         {/* user list  */}
         <Sidebar users={users} />
         {/* chatbox */}
-        <div
-          className="relative hidden h-[min(95vh,600px)] w-[100%]
-         flex-col gap-3 rounded-l-lg border border-stone-900 py-3 md:flex"
-        >
+        <div className="relative hidden h-screen w-full flex-col bg-stone-900 py-3 md:flex">
           <VelocifyIcon />
         </div>
       </div>
