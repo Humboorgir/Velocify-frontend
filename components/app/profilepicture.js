@@ -4,7 +4,7 @@ const ProfilePicture = () => {
   return (
     /* display the profile picture only if the message is NOT sent by me  */
     <Image
-      className={`h-[50px] w-[50px] rounded-full bg-neutral-500`}
+      className="mt-1 h-[50px] w-[50px] rounded-full bg-neutral-500"
       src={"/images/defaultUser.svg"}
       height={40}
       width={40}

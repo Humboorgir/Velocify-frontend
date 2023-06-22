@@ -4,7 +4,7 @@ const Message = ({ message, sentByMe }) => {
   return (
     <div
       key={message._id}
-      className={`message flex max-w-[90%] flex-row items-center gap-2
+      className={`message flex max-w-[90%] flex-row items-start gap-2
           ${sentByMe ? "self-end" : "self-start"}`}
     >
       {!sentByMe && <ProfilePicture />}
