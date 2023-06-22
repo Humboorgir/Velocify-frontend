@@ -7,7 +7,7 @@ const SidebarHeader = () => {
        items-center pl-3.5 text-left text-base text-slate-200"
     >
       {/* search input  */}
-      <div className="relative">
+      <div className="relative mr-14 w-full">
         <input
           type="text"
           className="w-full rounded-full bg-[#181818] py-2 pl-10 text-textColor placeholder-textColorWeak"
