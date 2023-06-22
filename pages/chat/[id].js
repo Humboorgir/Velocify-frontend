@@ -52,6 +52,10 @@ const Page = () => {
     getUsers(token).then((users) => {
       // TODO: this would break as soon as two users have the same username,
       // handle this in a different way
+      // update: I'll ask everyone for a unique username when signing in
+      // and use it to handle these things, too lazy to implement that now
+      const otherUser = users.find((user) => user._id === id);
+      setUser(otherUser);
       users = users.filter((user) => user.username !== username);
       setUsers(users);
     });
@@ -59,12 +63,6 @@ const Page = () => {
     getChat(token, id).then((chat) => {
       if (chat === null || !chat.messages) return setMessages([]);
       setMessages(chat.messages);
-      const myUsername = localStorage.getItem("username");
-      const otherUser = chat.participants.filter(
-        (participant) => participant.username !== myUsername
-      )[0];
-      console.log(otherUser);
-      setUser(otherUser);
     });
 
     // initializing socket.io
