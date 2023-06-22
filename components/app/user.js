@@ -16,7 +16,7 @@ const User = ({ user }) => {
             src="/images/defaultUser.svg"
             className="relative h-12 rounded-full bg-neutral-500"
           />
-          <span className="absolute bottom-0 left-7 h-3.5 w-3.5 rounded-full border-2 border-gray-800 bg-green-400 "></span>
+          <span className="absolute bottom-0 left-9 h-3.5 w-3.5 rounded-full border-2 border-gray-800 bg-green-400 "></span>
         </div>
         {/* profile picture end  */}
 
