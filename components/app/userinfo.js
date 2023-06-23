@@ -1,5 +1,6 @@
 import { FaBars } from "react-icons/fa";
 
+import Image from "next/image";
 const UserInfo = ({ user }) => {
   return (
     <div
@@ -7,7 +8,12 @@ const UserInfo = ({ user }) => {
      border-l-2 border-stone-900 bg-surface px-[3%]"
     >
       <div className="flex items-center gap-2">
-        <img className="h-12 w-12" src="/images/defaultUser.svg"></img>
+        <Image
+          className="h-12 w-12"
+          src="/images/defaultUser.svg"
+          width={46}
+          height={46}
+        ></Image>
         <div className="flex flex-col items-start justify-center">
           <span className="text-base text-textColorStrong">
             {user.username}
