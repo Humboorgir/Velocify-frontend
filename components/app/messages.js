@@ -4,7 +4,7 @@ const Messages = ({ messages, username }) => {
   return (
     <>
       <div
-        className="justiy-between flex h-[90%] w-[100%] shrink-0 grow-0 flex-col items-start gap-3 overflow-y-scroll px-[12%] pb-3"
+        className="justiy-between flex h-[90%] w-[100%] flex-col items-start gap-3 overflow-y-scroll px-[12%] pt-14 pb-3"
         id="messageBox"
       >
         {/* show messages if there are any */}
