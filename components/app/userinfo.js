@@ -9,10 +9,10 @@ const UserInfo = ({ user }) => {
     >
       <div className="flex items-center gap-2">
         <Image
-          className="h-12 w-12 rounded-full bg-slate-400"
+          className="h-11 w-11 rounded-full bg-slate-400"
           src="/images/defaultUser.svg"
-          width={46}
-          height={46}
+          width={44}
+          height={44}
         ></Image>
         <div className="flex flex-col items-start justify-center">
           <span className="text-base text-textColorStrong">
