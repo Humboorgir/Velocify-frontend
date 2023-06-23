@@ -22,7 +22,7 @@ const UserInfo = ({ user }) => {
         </div>
       </div>
 
-      <div className="text-2xl">
+      <div className="text-2xl text-yellow">
         <FaBars />
       </div>
     </div>

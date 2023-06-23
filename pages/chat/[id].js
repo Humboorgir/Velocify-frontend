@@ -100,7 +100,7 @@ const Page = () => {
 
         {/* chatbox */}
         <div
-          className="relative flex h-full w-[100%] flex-col justify-between bg-gradient-to-b from-slate-700 to-stone-900 py-3
+          className="relative flex h-full w-[100%] flex-col justify-between bg-stone-900 py-3
          md:max-w-[calc(100%-400px)] md:pt-6"
         >
           <UserInfo user={user} />
