@@ -9,7 +9,7 @@ const UserInfo = ({ user }) => {
     >
       <div className="flex items-center gap-2">
         <Image
-          className="h-12 w-12"
+          className="h-12 w-12 rounded-full bg-slate-400"
           src="/images/defaultUser.svg"
           width={46}
           height={46}
