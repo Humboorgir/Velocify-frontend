@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 import Router, { useRouter } from "next/router";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useLayoutEffect, useState, useRef } from "react";
 import Head from "@/components/global/head";
 import Sidebar from "@/components/app/sidebar";
 import UserInfo from "@/components/app/userinfo";
@@ -77,16 +77,12 @@ const Page = () => {
     socket.on("messageCreate", (message) => {
       // if the message is sent from anyone BUT the user you're chatting with, return;
       // will handle this differently later on
-      if (
-        message.author._id !== global.myId &&
-        message.author._id !== global.userId
-      )
-        return;
+      if (message.author._id !== global.myId && message.author._id !== global.userId) return;
       setMessages((messages) => [...messages, message]);
     });
   }, [router.query]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const messageBox = document.getElementById("messageBox");
     messageBox.scrollTop = messageBox.scrollHeight;
   }, [messages]);
@@ -101,8 +97,7 @@ const Page = () => {
         {/* chatbox */}
         <div
           className="relative flex h-full w-[100%] flex-col justify-between bg-stone-900 py-3
-         md:max-w-[calc(100%-400px)] md:pt-6"
-        >
+         md:max-w-[calc(100%-400px)] md:pt-6">
           <UserInfo user={user} />
           <Messages messages={messages} username={global.username} />
           <MessageInput messageCreate={messageCreate} />
