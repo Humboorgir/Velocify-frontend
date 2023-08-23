@@ -39,6 +39,7 @@ const Page = () => {
       setMessages((messages) => [...messages, message]);
     });
   }
+
   useEffect(() => {
     const { id } = router.query;
     if (!id) return;

@@ -1,4 +1,4 @@
-import User from "@/components/app/user";
+import User from "@/components/app/sidebar/user";
 
 const Users = ({ users }) => {
   return (
