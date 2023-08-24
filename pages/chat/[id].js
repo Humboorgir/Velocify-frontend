@@ -53,14 +53,10 @@ const Page = () => {
     const token = localStorage.getItem("token");
 
     getChats(token).then((chats) => {
-      // TODO: this would break as soon as two users have the same username,
-      // handle this in a different way
-      // update: I'll ask everyone for a unique username when signing in
-      // and use it to handle these things, too lazy to implement that now
-      const otherUser = users.find((user) => user._id === id);
-      setUser(otherUser);
+      const currentChat = chats.find((chat) => chat._id == id);
+      let otherParticipant = currentChat.participants.filter((p) => p._id !== global.myId)[0];
+      setUser(otherParticipant);
 
-      // users = users.filter((user) =>  !== username);
       setChats(chats);
     });
 

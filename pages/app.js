@@ -16,8 +16,6 @@ const App = () => {
     // getting the token
     const token = localStorage.getItem("token");
     getChats(token, user).then((chats) => {
-      // TODO: this would break as soon as two users have the same username,
-      // handle this in a different way
       setChats(chats);
     });
   }, []);
