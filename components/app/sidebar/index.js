@@ -1,9 +1,9 @@
-import Users from "@/components/app/sidebar/users";
+import Chats from "@/components/app/sidebar/chats";
 import SidebarHeader from "@/components/app/sidebar/sidebarheader";
 import AddUserButton from "@/components/app/sidebar/adduserbutton";
 import { useRouter } from "next/router";
 
-const Sidebar = ({ users }) => {
+const Sidebar = ({ chats }) => {
   const router = useRouter();
   const isOnApp = router.pathname === "/app";
   return (
@@ -15,7 +15,7 @@ const Sidebar = ({ users }) => {
 
       <AddUserButton />
 
-      <Users users={users} />
+      <Chats chats={chats} />
     </div>
   );
 };
