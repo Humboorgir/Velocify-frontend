@@ -15,7 +15,7 @@ const Page = () => {
     username: "Loading...",
     _id: "Loading...",
   });
-  const [users, setUsers] = useState([]);
+  const [chats, setChats] = useState([]);
   const [messages, setMessages] = useState([]);
 
   const router = useRouter();
@@ -52,15 +52,16 @@ const Page = () => {
     // getting the token
     const token = localStorage.getItem("token");
 
-    getUsers(token).then((users) => {
+    getChats(token).then((chats) => {
       // TODO: this would break as soon as two users have the same username,
       // handle this in a different way
       // update: I'll ask everyone for a unique username when signing in
       // and use it to handle these things, too lazy to implement that now
       const otherUser = users.find((user) => user._id === id);
       setUser(otherUser);
-      users = users.filter((user) => user.username !== username);
-      setUsers(users);
+
+      // users = users.filter((user) =>  !== username);
+      setChats(chats);
     });
 
     getChat(token, id).then((chat) => {
@@ -93,7 +94,7 @@ const Page = () => {
       <Head page={user.username} />
       {/* // container */}
       <div className="flex h-screen w-screen items-end text-textColor">
-        <Sidebar users={users} />
+        <Sidebar chats={chats} />
 
         {/* chatbox */}
         <div
@@ -109,8 +110,8 @@ const Page = () => {
   );
 };
 
-async function getUsers(token) {
-  const res = await fetch(`${BACKEND_ENDPOINT}/users`, {
+async function getChats(token) {
+  const res = await fetch(`${BACKEND_ENDPOINT}/chats/${global.myId}`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,

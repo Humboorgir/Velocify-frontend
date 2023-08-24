@@ -9,18 +9,16 @@ import VelocifyLogo from "@/components/app/velocifylogo";
 const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://localhost:2000";
 
 const App = () => {
-  const [messages, setMessages] = useState([]);
-  const [users, setUsers] = useState([]);
+  const [chats, setChats] = useState([]);
   useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    global.myId = user._id;
     // getting the token
     const token = localStorage.getItem("token");
-    getUsers(token).then((users) => {
+    getChats(token, user).then((chats) => {
       // TODO: this would break as soon as two users have the same username,
       // handle this in a different way
-      const user = JSON.parse(localStorage.getItem("user"));
-      const username = user.username;
-      users = users.filter((user) => user.username !== username);
-      setUsers(users);
+      setChats(chats);
     });
   }, []);
   return (
@@ -29,7 +27,7 @@ const App = () => {
       {/* // container */}
       <div className="flex h-full w-full flex-row items-center text-textColor">
         {/* user list  */}
-        <Sidebar users={users} />
+        <Sidebar chats={chats} />
         {/* chatbox */}
         <div className="relative hidden h-screen w-full flex-col bg-stone-900 py-3 md:flex">
           <VelocifyLogo />
@@ -39,8 +37,8 @@ const App = () => {
   );
 };
 
-async function getUsers(token) {
-  const res = await fetch(`${BACKEND_ENDPOINT}/users`, {
+async function getChats(token) {
+  const res = await fetch(`${BACKEND_ENDPOINT}/chats/${global.myId}`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${token}`,

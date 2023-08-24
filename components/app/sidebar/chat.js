@@ -19,7 +19,7 @@ const Chat = ({ chat }) => {
         {/* username and bio */}
         <div className="flex flex-col items-start justify-center">
           <span className="text-lg text-slate-200">
-            {chat.participants.filter((x) => x._id !== global.myId)}
+            {chat.participants.filter((x) => x._id !== global.myId)[0].username}
           </span>
           <span className="ml-1 text-[14px] text-slate-400">Hi there!</span>
         </div>
