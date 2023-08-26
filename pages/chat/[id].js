@@ -27,11 +27,11 @@ const Page = () => {
     e.target.message.value = "";
     const socket = global.socket;
     const token = localStorage.getItem("token");
-    const userId = global.userId;
+    const chatId = global.chatId;
     const data = {
       token,
       message,
-      userId,
+      chatId,
     };
     socket.emit("messageCreate", data, (message) => {
       if (!message) console.log("no callback");
@@ -43,7 +43,7 @@ const Page = () => {
   useEffect(() => {
     const { id } = router.query;
     if (!id) return;
-    global.userId = id;
+    global.chatId = id;
 
     // selectedUser.classList.add("selected");
     const user = JSON.parse(localStorage.getItem("user"));
@@ -75,7 +75,7 @@ const Page = () => {
     socket.on("messageCreate", (message) => {
       // if the message is sent from anyone BUT the user you're chatting with, return;
       // will handle this differently later on
-      if (message.author._id !== global.myId && message.author._id !== global.userId) return;
+      // if (message.author._id !== global.myId && message.author._id !== global.userId) return;
       setMessages((messages) => [...messages, message]);
     });
   }, [router.query]);
@@ -94,7 +94,7 @@ const Page = () => {
 
         {/* chatbox */}
         <div
-          className="relative flex h-full w-[100%] flex-col justify-between bg-stone-900 py-3
+          className="relative flex h-full w-full flex-col justify-between bg-stone-900 py-3
          md:max-w-[calc(100%-400px)] md:pt-6">
           <UserInfo user={user} />
           <Messages messages={messages} username={global.username} />
