@@ -23,7 +23,7 @@ const App = () => {
     <>
       <Head page="app" />
       {/* // container */}
-      <div className="flex h-full w-full flex-row items-center text-textColor">
+      <div className="flex h-screen w-screen items-end text-textColor">
         {/* user list  */}
         <Sidebar chats={chats} />
         {/* chatbox */}
