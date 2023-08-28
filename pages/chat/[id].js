@@ -21,25 +21,6 @@ const Page = () => {
   const router = useRouter();
   const socketRef = useRef(null);
 
-  function messageCreate(e) {
-    e.preventDefault();
-    const message = e.target.message.value;
-    e.target.message.value = "";
-    const socket = global.socket;
-    const token = localStorage.getItem("token");
-    const chatId = global.chatId;
-    const data = {
-      token,
-      message,
-      chatId,
-    };
-    socket.emit("messageCreate", data, (message) => {
-      if (!message) console.log("no callback");
-      console.log(message);
-      setMessages((messages) => [...messages, message]);
-    });
-  }
-
   useEffect(() => {
     const { id } = router.query;
     if (!id) return;
@@ -85,12 +66,44 @@ const Page = () => {
     messageBox.scrollTop = messageBox.scrollHeight;
   }, [messages]);
 
+  function messageCreate(e) {
+    e.preventDefault();
+    const message = e.target.message.value;
+    e.target.message.value = "";
+    const socket = global.socket;
+    const token = localStorage.getItem("token");
+    const chatId = global.chatId;
+    const data = {
+      token,
+      message,
+      chatId,
+    };
+    socket.emit("messageCreate", data, (message) => {
+      if (!message) console.log("no callback");
+      console.log(message);
+      setMessages((messages) => [...messages, message]);
+    });
+  }
+
+  function handleAddUser(e, setOpen) {
+    e.preventDefault();
+    console.log(e.target.id.value);
+    e.target.id.value = "";
+    // const socket = global.socket;
+    // const token = localStorage.getItem("token");
+    // const chatId = global.chatId;
+    // const data = {
+    //   token,
+
+    // }
+    setOpen((open) => !open);
+  }
   return (
     <>
       <Head page={user.username} />
       {/* // container */}
       <div className="flex h-screen w-screen items-end text-textColor">
-        <Sidebar chats={chats} />
+        <Sidebar chats={chats} handleAddUser={handleAddUser} />
 
         {/* chatbox */}
         <div

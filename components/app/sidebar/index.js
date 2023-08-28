@@ -3,7 +3,7 @@ import SidebarHeader from "@/components/app/sidebar/sidebarheader";
 import AddUserButton from "@/components/app/sidebar/adduserbutton";
 import { useRouter } from "next/router";
 
-const Sidebar = ({ chats }) => {
+const Sidebar = ({ chats, handleAddUser }) => {
   const router = useRouter();
   const isOnApp = router.pathname === "/app";
   return (
@@ -13,7 +13,7 @@ const Sidebar = ({ chats }) => {
       ${isOnApp ? "" : "hidden"} ${isOnApp ? "" : "md:"}flex`}>
       <SidebarHeader />
 
-      <AddUserButton />
+      <AddUserButton handleAddUser={handleAddUser} />
 
       <Chats chats={chats} />
     </div>
