@@ -87,15 +87,17 @@ const Page = () => {
 
   function handleAddUser(e, setOpen) {
     e.preventDefault();
-    console.log(e.target.id.value);
-    e.target.id.value = "";
-    // const socket = global.socket;
-    // const token = localStorage.getItem("token");
-    // const chatId = global.chatId;
-    // const data = {
-    //   token,
+    if (e.target.id.value == "" || e.target.id.value == " ") return;
+    const socket = global.socket;
+    const token = localStorage.getItem("token");
+    const userId = e.target.id.value;
+    const data = {
+      token,
+      userId
+    }
+    socket.emit('chatCreate', data);
 
-    // }
+    e.target.id.value = "";
     setOpen((open) => !open);
   }
   return (
