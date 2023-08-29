@@ -79,7 +79,7 @@ const Page = () => {
       chatId,
     };
     socket.emit("messageCreate", data, (message) => {
-      if (!message) console.log("no callback");
+      if (!message) console.log("[messageCreate] no callback");
       console.log(message);
       setMessages((messages) => [...messages, message]);
     });
@@ -88,18 +88,26 @@ const Page = () => {
   function handleAddUser(e, setOpen) {
     e.preventDefault();
     if (e.target.id.value == "" || e.target.id.value == " ") return;
+    const userId = e.target.id.value;
+    e.target.id.value = "";
     const socket = global.socket;
     const token = localStorage.getItem("token");
-    const userId = e.target.id.value;
     const data = {
       token,
-      userId
-    }
-    socket.emit('chatCreate', data);
+      userId,
+    };
+    socket.emit("chatCreate", data, (chat) => {
+      if (!chat) {
+        console.log("[chatCreate] no callback");
+        return setOpen((open) => !open);
+      }
 
-    e.target.id.value = "";
-    setOpen((open) => !open);
+      setChats((chats) => [...chats, chat]);
+      setOpen((open) => !open);
+      router.push(`/chat/${chat._id}`);
+    });
   }
+
   return (
     <>
       <Head page={user.username} />
