@@ -17,6 +17,7 @@ const App = () => {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     global.myId = user._id;
+    global.username = user.username;
 
     // getting the token
     const token = localStorage.getItem("token");

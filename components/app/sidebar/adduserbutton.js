@@ -14,8 +14,9 @@ const AddUserButton = ({ handleAddUser }) => {
         <div className="relative h-[60px] w-[60px]">
           <Plus
             onClick={togglePopover}
-            className="absolute z-20 h-[60px] w-[60px] cursor-pointer text-neutral-600
-         hover:text-neutral-700 active:text-neutral-600"
+            className="absolute z-20 h-[60px] w-[60px] cursor-pointer rounded-full
+         text-neutral-700 outline-none outline-2 -outline-offset-[4px] outline-neutral-600
+         active:text-neutral-600"
           />
           <div className="absolute top-0 left-0 right-0 bottom-0 m-1.5 flex rounded-full bg-white" />
 
@@ -34,7 +35,7 @@ const AddUserButton = ({ handleAddUser }) => {
             />
             <input
               type="submit"
-              className="cursor-pointer rounded-lg bg-neutral-700 py-2 px-4 text-white active:bg-neutral-600"
+              className="cursor-pointer rounded-md bg-neutral-700 py-2 px-4 text-white active:bg-neutral-600"
               value="Add"
             />
           </form>
