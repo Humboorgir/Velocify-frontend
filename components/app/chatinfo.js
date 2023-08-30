@@ -18,8 +18,14 @@ const ChatInfo = ({ user }) => {
         </div>
       </div>
 
-      <div className="text-2xl">
+      <div className="group relative cursor-pointer text-3xl">
         <FaBars />
+        <span
+          className="invisible absolute top-full right-full w-max
+      origin-top-right scale-75 rounded-md bg-slate-400/20 p-2 text-sm opacity-0 transition-all
+      duration-[120ms] ease-out group-hover:visible group-hover:!scale-100 group-hover:opacity-100">
+          Not available yet
+        </span>
       </div>
     </div>
   );
