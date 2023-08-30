@@ -59,6 +59,10 @@ const Page = () => {
       // if (message.author._id !== global.myId && message.author._id !== global.userId) return;
       setMessages((messages) => [...messages, message]);
     });
+
+    socket.on("chatCreate", (chat) => {
+      setChats((chats) => [...chats, chat]);
+    });
   }, [router.query]);
 
   useLayoutEffect(() => {

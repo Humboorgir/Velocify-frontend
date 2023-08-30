@@ -29,6 +29,10 @@ const App = () => {
     socketRef.current.token = token;
     global.socket = socketRef.current;
 
+    socket.on("chatCreate", (chat) => {
+      setChats((chats) => [...chats, chat]);
+    });
+
     getChats(token, user).then((chats) => {
       setChats(chats);
     });
