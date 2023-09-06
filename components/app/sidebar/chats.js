@@ -4,8 +4,8 @@ const Chats = ({ chats }) => {
   return (
     <>
       {chats &&
-        chats.map((chat) => {
-          return <Chat chat={chat} />;
+        chats.map((chat, i) => {
+          return <Chat key={i} chat={chat} />;
         })}
     </>
   );
