@@ -6,8 +6,7 @@ import Title from "@/components/login/title";
 import Return from "@/components/login/return";
 import CredentialsLogin from "@/components/login/credentialslogin";
 import ThirdPartyLogin from "@/components/login/thirdpartylogin";
-const BACKEND_ENDPOINT =
-  process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://localhost:2000";
+const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://localhost:2000";
 const Login = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   return (
@@ -22,8 +21,7 @@ const Login = () => {
         <form
           className="relative mb-4 flex w-[90vw] flex-col items-center justify-center 
         gap-4 rounded-xl bg-bgColorStrong px-4 py-6 text-textColorSemiWeak md:w-[700px] md:flex-row md:items-start"
-          onSubmit={(e) => handleSubmit(e, setIsProcessing)}
-        >
+          onSubmit={(e) => handleSubmit(e, setIsProcessing)}>
           {/* login with credentials */}
           <CredentialsLogin isProcessing={isProcessing} />
           {/* login with a third party provider */}
@@ -53,7 +51,7 @@ async function handleSubmit(e, setIsProcessing) {
   switch (res.status) {
     case 404:
       setIsProcessing(false);
-      console.log("user not found");
+      console.log("User not found");
       break;
     case 401:
       setIsProcessing(false);
@@ -61,12 +59,6 @@ async function handleSubmit(e, setIsProcessing) {
       break;
     case 200:
       res = await res.json();
-      document.cookie = `refreshToken=${res.refreshToken};
-       max-age=${90 * 24 * 60 * 60};
-       HttpOnly;
-       SameSite=Strict;
-       path=/auth/;
-       domain=${BACKEND_ENDPOINT};`;
       const user = JSON.stringify(res.user);
       localStorage.setItem("token", res.accessToken);
       localStorage.setItem("user", user);
