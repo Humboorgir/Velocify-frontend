@@ -26,42 +26,44 @@ const Page = () => {
     if (!id) return;
     global.chatId = id;
 
-    // selectedUser.classList.add("selected");
-    const user = JSON.parse(localStorage.getItem("user"));
-    global.username = user.username;
-    global.myId = user._id;
-    // getting the token
+    const userInfo = JSON.parse(localStorage.getItem("user"));
+    global.username = userInfo.username;
+    global.myId = userInfo._id;
+
     const token = localStorage.getItem("token");
-
-    getChats(token).then((chats) => {
-      const currentChat = chats.find((chat) => chat._id == id);
-      let otherParticipant = currentChat.participants.filter((p) => p._id !== global.myId)[0];
-      setUser(otherParticipant);
-
-      setChats(chats);
-    });
-
-    getChat(token, id).then((chat) => {
-      if (chat === null || !chat.messages) return setMessages([]);
-      setMessages(chat.messages);
-    });
 
     // initializing socket.io
     // first check if socket.io is already initialized
-    if (socketRef.current) return;
-    socketRef.current = io(BACKEND_ENDPOINT, { query: { token } });
+    if (!socketRef.current) {
+      socketRef.current = io(BACKEND_ENDPOINT, {
+        auth: {
+          token,
+        },
+      });
+
+      socketRef.current.on("messageCreate", (message) => {
+        if (message.author._id !== global.myId && message.author._id !== global.recipient._id) return;
+        setMessages((messages) => [...messages, message]);
+      });
+
+      socketRef.current.on("chatCreate", (chat) => {
+        setChats((chats) => [...chats, chat]);
+      });
+    }
+
     socketRef.current.token = token;
     global.socket = socketRef.current;
 
-    socket.on("messageCreate", (message) => {
-      // if the message is sent from anyone BUT the user you're chatting with, return;
-      // will handle this differently later on
-      // if (message.author._id !== global.myId && message.author._id !== global.userId) return;
-      setMessages((messages) => [...messages, message]);
+    socketRef.current.emit("chats", global.myId, (chats) => {
+      const currentChat = chats.find((chat) => chat._id == id);
+      let recipient = currentChat.participants.filter((p) => p._id !== global.myId)[0];
+      setUser(recipient);
+      global.recipient = recipient;
+      setChats(chats);
     });
-
-    socket.on("chatCreate", (chat) => {
-      setChats((chats) => [...chats, chat]);
+    socketRef.current.emit("chat", id, (chat) => {
+      if (chat === null || !chat.messages) return setMessages([]);
+      setMessages(chat.messages);
     });
   }, [router.query]);
 
@@ -75,10 +77,8 @@ const Page = () => {
     const message = e.target.message.value;
     e.target.message.value = "";
     const socket = global.socket;
-    const token = localStorage.getItem("token");
     const chatId = global.chatId;
     const data = {
-      token,
       message,
       chatId,
     };
@@ -95,9 +95,7 @@ const Page = () => {
     const userId = e.target.id.value;
     e.target.id.value = "";
     const socket = global.socket;
-    const token = localStorage.getItem("token");
     const data = {
-      token,
       userId,
     };
     socket.emit("chatCreate", data, (chat) => {
@@ -105,7 +103,6 @@ const Page = () => {
         console.log("[chatCreate] no callback");
         return setOpen((open) => !open);
       }
-
       setChats((chats) => [...chats, chat]);
       setOpen((open) => !open);
       router.push(`/chat/${chat._id}`);
@@ -132,31 +129,5 @@ const Page = () => {
     </>
   );
 };
-
-async function getChats(token) {
-  const res = await fetch(`${BACKEND_ENDPOINT}/chats/${global.myId}`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  // redirect to login if the user is not signed in or has an expired token
-  if (res.status === 401 || res.status === 403) return Router.push("/login");
-  const users = await res.json();
-  return users;
-}
-
-async function getChat(token, id) {
-  const res = await fetch(`${BACKEND_ENDPOINT}/chat/${id}`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  // redirect to login if the user is not signed in or has an expired token
-  if (res.status === 401 || res.status === 403) return Router.push("/login");
-  const chatData = await res.json();
-  return chatData;
-}
 
 export default Page;

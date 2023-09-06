@@ -25,16 +25,19 @@ const App = () => {
     // initializing socket.io
     // first check if socket.io is already initialized
     if (socketRef.current) return;
-    socketRef.current = io(BACKEND_ENDPOINT, { query: { token } });
+    socketRef.current = io(BACKEND_ENDPOINT, {
+      auth: {
+        token,
+      },
+    });
     socketRef.current.token = token;
     global.socket = socketRef.current;
 
-    socket.on("chatCreate", (chat) => {
-      setChats((chats) => [...chats, chat]);
-    });
-
-    getChats(token, user).then((chats) => {
+    socketRef.current.emit("chats", global.myId, (chats) => {
       setChats(chats);
+    });
+    socketRef.current.on("chatCreate", (chat) => {
+      setChats((chats) => [...chats, chat]);
     });
   }, []);
 
@@ -76,18 +79,5 @@ const App = () => {
     </>
   );
 };
-
-async function getChats(token) {
-  const res = await fetch(`${BACKEND_ENDPOINT}/chats/${global.myId}`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  // redirect to login if the user is not signed in or has an expired token
-  if (res.status === 401 || res.status === 403) return Router.push("/login");
-  const users = await res.json();
-  return users;
-}
 
 export default App;
