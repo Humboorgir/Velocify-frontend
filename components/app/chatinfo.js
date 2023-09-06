@@ -11,7 +11,8 @@ const ChatInfo = ({ user }) => {
           className="h-11 w-11 rounded-full bg-slate-400"
           src="/images/defaultUser.svg"
           width={44}
-          height={44}></Image>
+          height={44}
+          alt="Recipient profile picture"></Image>
         <div className="flex flex-col items-start justify-center">
           <span className="text-base text-textColorStrong">{user.username}</span>
           <span className="text-sm text-slate-300">Last seen recently</span>
