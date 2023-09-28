@@ -10,6 +10,8 @@ const Email = () => {
         type="email"
         id="email"
         name="email"
+        minLength="3"
+        maxLength="320"
         placeholder="Please enter a valid email address"
         required
       />

@@ -12,7 +12,7 @@ const Password = () => {
         name="password"
         placeholder="Please enter a unique password"
         minLength="8"
-        maxLength="20"
+        maxLength="24"
         required
       />
     </div>
