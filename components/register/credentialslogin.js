@@ -1,7 +1,6 @@
 import Username from "@/components/register/username";
 import Email from "@/components/register/email";
 import Password from "@/components/register/password";
-import ConfirmPassword from "@/components/register/confirmpassword";
 import Agreement from "@/components/register/agreement";
 import Submit from "@/components/register/submit";
 
@@ -14,7 +13,6 @@ const CredentialsLogin = ({ isProcessing }) => {
       <Username />
       <Email />
       <Password />
-      <ConfirmPassword />
       <Agreement />
       <Submit isProcessing={isProcessing} />
     </div>
