@@ -30,19 +30,10 @@
 }
 @tailwind components;
 @tailwind utilities;
-/* I'll eventually remove these */
+
 @layer components {
   body {
     @apply bg-bgColor;
-  }
-  .headerLIHighlighted {
-    @apply border-b-2 border-b-white !text-textColorStrong;
-  }
-  .headerLI {
-    @apply flex items-center;
-  }
-  .headerLI a {
-    @apply h-fit w-fit py-3 px-5 text-textColorWeak no-underline;
   }
 }
 .customAutofillStyle:-webkit-autofill {
