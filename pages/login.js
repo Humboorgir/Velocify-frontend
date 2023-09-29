@@ -4,8 +4,10 @@ import { useState } from "react";
 import Head from "@/components/global/head";
 import Title from "@/components/login/title";
 import Return from "@/components/login/return";
-import CredentialsLogin from "@/components/login/credentialslogin";
-import ThirdPartyLogin from "@/components/login/thirdpartylogin";
+import Email from "@/components/login/email";
+import Password from "@/components/login/password";
+import Submit from "@/components/login/submit";
+
 const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://localhost:2000";
 const Login = () => {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -19,13 +21,13 @@ const Login = () => {
         <Title />
         {/* the login form */}
         <form
-          className="relative mb-4 flex w-[90vw] flex-col items-center justify-center 
-        gap-4 rounded-xl bg-bgColorStrong px-4 py-6 text-textColorSemiWeak md:w-[700px] md:flex-row md:items-start"
+          className="relative mb-4 flex flex-col items-center 
+        justify-center gap-4 rounded-xl bg-bgColorStrong p-6 text-textColorSemiWeak"
           onSubmit={(e) => handleSubmit(e, setIsProcessing)}>
           {/* login with credentials */}
-          <CredentialsLogin isProcessing={isProcessing} />
-          {/* login with a third party provider */}
-          <ThirdPartyLogin />
+          <Email />
+          <Password />
+          <Submit isProcessing={isProcessing} />
         </form>
       </div>
     </>
