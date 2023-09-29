@@ -20,17 +20,19 @@ const UserInfo = () => {
       {/* Profile picture end  */}
 
       {/* Username and ID  */}
-      <div className="ml-2">
+      <div className="ml-2 w-full">
         {/* username  */}
         <h3 className="text-lg">{global.username}</h3>
         {/* ID and popup container */}
         <div
-          className="group relative cursor-pointer"
+          className="group relative w-full cursor-pointer"
           onClick={() => {
             clipboard.copy(global.myId);
           }}>
           {/* ID  */}
-          <p className="z-40 text-sm text-slate-400">{global.myId}</p>
+          <p className="z-40 max-w-[85%] overflow-hidden text-ellipsis whitespace-nowrap text-sm text-slate-400">
+            {global.myId}
+          </p>
           {/* 'click to copy' popup  */}
           <div
             className="invisible absolute bottom-[calc(100%+8px)] left-[80%] w-max translate-x-[-50%] scale-75 rounded-md
