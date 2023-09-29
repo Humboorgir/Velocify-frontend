@@ -4,10 +4,10 @@ import { useState } from "react";
 import Head from "@/components/global/head";
 import Title from "@/components/register/title";
 import Return from "@/components/register/return";
-import Username from "@/components/register/username";
-import Email from "@/components/register/email";
-import Password from "@/components/register/password";
-import Submit from "@/components/register/submit";
+import UsernameField from "@/components/register/usernamefield";
+import EmailField from "@/components/register/emailfield";
+import PasswordField from "@/components/register/passwordfield";
+import SubmitButton from "@/components/register/submitbutton";
 
 const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://localhost:2000";
 const Register = () => {
@@ -25,10 +25,10 @@ const Register = () => {
           className="relative mb-4 flex flex-col items-center justify-center 
         gap-4 rounded-xl bg-bgColorStrong p-6 text-textColorSemiWeak"
           onSubmit={(e) => handleSubmit(e, setIsProcessing)}>
-          <Username />
-          <Email />
-          <Password />
-          <Submit isProcessing={isProcessing} />
+          <UsernameField />
+          <EmailField />
+          <PasswordField />
+          <SubmitButton isProcessing={isProcessing} />
         </form>
       </div>
     </>

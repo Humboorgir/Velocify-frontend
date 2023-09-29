@@ -4,9 +4,9 @@ import { useState } from "react";
 import Head from "@/components/global/head";
 import Title from "@/components/login/title";
 import Return from "@/components/login/return";
-import Email from "@/components/login/email";
-import Password from "@/components/login/password";
-import Submit from "@/components/login/submit";
+import EmailField from "@/components/login/emailfield";
+import PasswordField from "@/components/login/passwordfield";
+import SubmitButton from "@/components/login/submitbutton";
 
 const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://localhost:2000";
 const Login = () => {
@@ -25,9 +25,9 @@ const Login = () => {
         justify-center gap-4 rounded-xl bg-bgColorStrong p-6 text-textColorSemiWeak"
           onSubmit={(e) => handleSubmit(e, setIsProcessing)}>
           {/* login with credentials */}
-          <Email />
-          <Password />
-          <Submit isProcessing={isProcessing} />
+          <EmailField />
+          <PasswordField />
+          <SubmitButton isProcessing={isProcessing} />
         </form>
       </div>
     </>
