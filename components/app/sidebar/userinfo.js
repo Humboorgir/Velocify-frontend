@@ -9,7 +9,7 @@ const UserInfo = () => {
       {/* Profile picture */}
       <div className="relative">
         <Image
-          className="mt-1 h-[42px] w-[42px] rounded-full bg-neutral-500"
+          className="mt-1 h-[42px] min-w-[42px] rounded-full bg-neutral-500"
           src={"/images/defaultUser.svg"}
           height={42}
           width={42}
