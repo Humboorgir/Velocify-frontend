@@ -60,6 +60,7 @@ const Page = () => {
       setUser(recipient);
       global.recipient = recipient;
       setChats(chats);
+      console.log(chats);
     });
     socketRef.current.emit("chat", id, (chat) => {
       if (chat === null || !chat.messages) return setMessages([]);

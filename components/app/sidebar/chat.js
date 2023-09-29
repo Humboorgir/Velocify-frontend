@@ -1,6 +1,11 @@
 import Link from "next/link";
 
 const Chat = ({ chat }) => {
+  let lastMessage = chat.messages[0].content;
+  if (lastMessage.length > 32) {
+    console.log("bozorg tare");
+    lastMessage = lastMessage.slice(0, 32) + "...";
+  }
   return (
     <>
       {/* container  */}
@@ -21,7 +26,7 @@ const Chat = ({ chat }) => {
           <span className="text-lg text-slate-200">
             {chat.participants.filter((x) => x._id !== global.myId)[0].username}
           </span>
-          <span className="ml-1 text-[14px] text-slate-400">Hi there!</span>
+          <span className="text-[14px] text-slate-400">{lastMessage}</span>
         </div>
         {/* username and bio end  */}
       </Link>
