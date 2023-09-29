@@ -1,6 +1,5 @@
 import { io } from "socket.io-client";
 import { useState, useEffect, useRef } from "react";
-import Router from "next/router";
 import Head from "@/components/global/head";
 import Sidebar from "@/components/app/sidebar";
 import VelocifyLogo from "@/components/app/velocifylogo";
@@ -12,6 +11,7 @@ const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://loc
 const App = () => {
   const router = useRouter();
   const [chats, setChats] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const socketRef = useRef(null);
 
   useEffect(() => {
@@ -70,7 +70,12 @@ const App = () => {
       {/* // container */}
       <div className="flex h-screen w-screen items-end text-textColor">
         {/* user list  */}
-        <Sidebar chats={chats} handleAddUser={handleAddUser} />
+        <Sidebar
+          chats={chats}
+          searchResults={searchResults}
+          setSearchResults={setSearchResults}
+          handleAddUser={handleAddUser}
+        />
         {/* chatbox */}
         <div className="relative hidden h-screen w-full flex-col bg-stone-900 py-3 md:flex">
           <VelocifyLogo />

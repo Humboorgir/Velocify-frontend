@@ -4,7 +4,7 @@ import AddUserButton from "@/components/app/sidebar/adduserbutton";
 import UserInfo from "@/components/app/sidebar/userinfo";
 import { useRouter } from "next/router";
 
-const Sidebar = ({ chats, handleAddUser }) => {
+const Sidebar = ({ chats, setSearchResults, searchResults, handleAddUser }) => {
   const router = useRouter();
   const isOnApp = router.pathname === "/app";
   return (
@@ -13,9 +13,9 @@ const Sidebar = ({ chats, handleAddUser }) => {
        bg-[#212121] pt-4 md:max-w-[400px]
       ${isOnApp ? "" : "hidden"} ${isOnApp ? "" : "md:"}flex`}>
       <div className="scrollbar-transparent relative h-[calc(100%-76px)] flex-shrink-0 flex-col overflow-y-scroll">
-        <SidebarHeader />
+        <SidebarHeader setSearchResults={setSearchResults} chats={chats} />
 
-        <Chats chats={chats} />
+        <Chats searchResults={searchResults} chats={chats} />
 
         <AddUserButton handleAddUser={handleAddUser} />
       </div>

@@ -2,9 +2,8 @@ import Link from "next/link";
 
 const Chat = ({ chat }) => {
   let lastMessage = chat.messages[0].content;
-  if (lastMessage.length > 32) {
-    console.log("bozorg tare");
-    lastMessage = lastMessage.slice(0, 32) + "...";
+  if (lastMessage.length > 24) {
+    lastMessage = lastMessage.slice(0, 22) + "...";
   }
   return (
     <>

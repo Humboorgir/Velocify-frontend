@@ -16,6 +16,7 @@ const Page = () => {
     _id: "Loading...",
   });
   const [chats, setChats] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const [messages, setMessages] = useState([]);
 
   const router = useRouter();
@@ -115,7 +116,12 @@ const Page = () => {
       <Head page={user.username} />
       {/* // container */}
       <div className="flex h-screen w-screen items-end text-textColor">
-        <Sidebar chats={chats} handleAddUser={handleAddUser} />
+        <Sidebar
+          chats={chats}
+          searchResults={searchResults}
+          setSearchResults={setSearchResults}
+          handleAddUser={handleAddUser}
+        />
 
         {/* chatbox */}
         <div
