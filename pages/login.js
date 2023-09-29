@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import Head from "@/components/global/head";
 import Title from "@/components/login/title";
-import Return from "@/components/login/return";
 import EmailField from "@/components/login/emailfield";
 import PasswordField from "@/components/login/passwordfield";
 import SubmitButton from "@/components/login/submitbutton";
@@ -16,15 +15,11 @@ const Login = () => {
       <Head page="login" />
       {/* container */}
       <div className="absolute flex min-h-full w-full flex-col items-center justify-center gap-3 p-3 md:gap-6">
-        {/* the return option (only visible on large/computer screens) */}
-        <Return />
         <Title />
-        {/* the login form */}
         <form
           className="relative mb-4 flex flex-col items-center 
         justify-center gap-4 rounded-xl bg-bgColorStrong p-6 text-textColorSemiWeak"
           onSubmit={(e) => handleSubmit(e, setIsProcessing)}>
-          {/* login with credentials */}
           <EmailField />
           <PasswordField />
           <SubmitButton isProcessing={isProcessing} />

@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import Head from "@/components/global/head";
 import Title from "@/components/register/title";
-import Return from "@/components/register/return";
 import UsernameField from "@/components/register/usernamefield";
 import EmailField from "@/components/register/emailfield";
 import PasswordField from "@/components/register/passwordfield";
@@ -17,10 +16,7 @@ const Register = () => {
       <Head page="register" />
       {/* container */}
       <div className="absolute flex min-h-full w-full flex-col items-center justify-center gap-3 p-3 md:gap-6">
-        {/* the return option (only visible on large/computer screens) */}
-        <Return />
         <Title />
-        {/* the signup form */}
         <form
           className="relative mb-4 flex flex-col items-center justify-center 
         gap-4 rounded-xl bg-bgColorStrong p-6 text-textColorSemiWeak"
