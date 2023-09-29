@@ -7,7 +7,6 @@ import Return from "@/components/register/return";
 import Username from "@/components/register/username";
 import Email from "@/components/register/email";
 import Password from "@/components/register/password";
-import Agreement from "@/components/register/agreement";
 import Submit from "@/components/register/submit";
 
 const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://localhost:2000";
@@ -29,7 +28,6 @@ const Register = () => {
           <Username />
           <Email />
           <Password />
-          <Agreement />
           <Submit isProcessing={isProcessing} />
         </form>
       </div>
