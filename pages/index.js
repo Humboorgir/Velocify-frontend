@@ -7,6 +7,7 @@ import UsernameField from "@/components/register/usernamefield";
 import EmailField from "@/components/register/emailfield";
 import PasswordField from "@/components/register/passwordfield";
 import SubmitButton from "@/components/register/submitbutton";
+import Link from "next/link";
 
 const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://localhost:2000";
 const Register = () => {
@@ -24,6 +25,12 @@ const Register = () => {
           <UsernameField />
           <EmailField />
           <PasswordField />
+          <div className="mr-auto ml-1 text-sm">
+            Already have an account?{" "}
+            <Link className="text-sky-500 underline hover:text-sky-400" href="/login">
+              Sign in
+            </Link>
+          </div>
           <SubmitButton isProcessing={isProcessing} />
         </form>
       </div>
