@@ -27,11 +27,11 @@ const Chat = ({ chat }) => {
         {/* profile picture end  */}
 
         {/* username and bio */}
-        <div className="flex w-full flex-col items-start justify-center">
+        <div className="flex max-w-[70%] flex-col items-start justify-center">
           <span className="text-lg text-slate-200">
             {chat.participants.filter((x) => x._id !== global.myId)[0].username}
           </span>
-          <span className="max-w-[70%] overflow-hidden text-ellipsis whitespace-nowrap text-[14px] text-slate-400">
+          <span className="max-w-full overflow-hidden text-ellipsis whitespace-nowrap text-[14px] text-slate-400">
             {lastMessage}
           </span>
         </div>
