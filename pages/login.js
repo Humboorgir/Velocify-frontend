@@ -6,6 +6,7 @@ import Title from "@/components/login/title";
 import EmailField from "@/components/login/emailfield";
 import PasswordField from "@/components/login/passwordfield";
 import SubmitButton from "@/components/login/submitbutton";
+import Link from "next/link";
 
 const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://localhost:2000";
 const Login = () => {
@@ -22,6 +23,12 @@ const Login = () => {
           onSubmit={(e) => handleSubmit(e, setIsProcessing)}>
           <EmailField />
           <PasswordField />
+          <div className="mr-auto ml-1 text-sm">
+            Don't have an account?{" "}
+            <Link className="text-sky-500 underline hover:text-sky-400" href="/">
+              Sign up
+            </Link>
+          </div>
           <SubmitButton isProcessing={isProcessing} />
         </form>
       </div>
