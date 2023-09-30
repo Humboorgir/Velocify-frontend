@@ -137,7 +137,7 @@ const Page = () => {
         <div
           className="relative flex h-full w-full flex-col justify-between bg-stone-900 py-3
          md:max-w-[calc(100%-400px)] md:pt-6">
-          <ChatInfo user={user} />
+          <ChatInfo user={user} onlineUsers={onlineUsers}/>
           <Messages messages={messages} username={global.username} />
           <MessageInput messageCreate={messageCreate} />
         </div>

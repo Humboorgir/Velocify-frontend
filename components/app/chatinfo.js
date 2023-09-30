@@ -1,7 +1,17 @@
 import { FaBars } from "react-icons/fa";
 
 import Image from "next/image";
-const ChatInfo = ({ user }) => {
+const ChatInfo = ({ user, onlineUsers }) => {
+  function checkOnline() {
+    let onlineUserIds = onlineUsers.map(
+      (chat) => chat.participants.filter((p) => p._id != global.myId)[0]._id
+    );
+    let otherUserId = user._id;
+    if (onlineUserIds.includes(otherUserId)) return true;
+    return false;
+  }
+  const status = checkOnline() ? "Online" : "Offline";
+  let statusTextColor = checkOnline() ? "text-green-300" : "text-slate-300";
   return (
     <div
       className="absolute top-0 z-10 flex h-16 w-full items-center justify-between
@@ -15,7 +25,7 @@ const ChatInfo = ({ user }) => {
           alt="Recipient profile picture"></Image>
         <div className="flex flex-col items-start justify-center">
           <span className="text-base text-textColorStrong">{user.username}</span>
-          <span className="text-sm text-slate-300">Last seen recently</span>
+          <span className={`text-sm ${statusTextColor}`}>{status}</span>
         </div>
       </div>
 
