@@ -11,6 +11,7 @@ const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://loc
 const App = () => {
   const router = useRouter();
   const [chats, setChats] = useState([]);
+  const [onlineUsers, setOnlineUsers] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const socketRef = useRef(null);
 
@@ -32,6 +33,13 @@ const App = () => {
     });
     socketRef.current.token = token;
     global.socket = socketRef.current;
+
+    socketRef.current.emit("onlineFriends", global.myId);
+
+    socketRef.current.on("onlineFriends", (onlineFriends) => {
+      console.log(onlineFriends);
+      setOnlineUsers(onlineFriends);
+    });
 
     socketRef.current.emit("chats", global.myId, (chats) => {
       setChats(chats);
@@ -75,6 +83,7 @@ const App = () => {
           searchResults={searchResults}
           setSearchResults={setSearchResults}
           handleAddUser={handleAddUser}
+          onlineUsers={onlineUsers}
         />
         {/* chatbox */}
         <div className="relative hidden h-screen w-full flex-col bg-stone-900 py-3 md:flex">

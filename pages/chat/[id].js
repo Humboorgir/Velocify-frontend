@@ -16,6 +16,7 @@ const Page = () => {
     _id: "Loading...",
   });
   const [chats, setChats] = useState([]);
+  const [onlineUsers, setOnlineUsers] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [messages, setMessages] = useState([]);
 
@@ -50,10 +51,17 @@ const Page = () => {
       socketRef.current.on("chatCreate", (chat) => {
         setChats((chats) => [...chats, chat]);
       });
+
+      socketRef.current.on("onlineFriends", (onlineFriends) => {
+        console.log(onlineFriends);
+        setOnlineUsers(onlineFriends);
+      });
     }
 
     socketRef.current.token = token;
     global.socket = socketRef.current;
+
+    socketRef.current.emit("onlineFriends", global.myId);
 
     socketRef.current.emit("chats", global.myId, (chats) => {
       const currentChat = chats.find((chat) => chat._id == id);
@@ -63,6 +71,7 @@ const Page = () => {
       setChats(chats);
       console.log(chats);
     });
+
     socketRef.current.emit("chat", id, (chat) => {
       if (chat === null || !chat.messages) return setMessages([]);
       setMessages(chat.messages);
@@ -121,6 +130,7 @@ const Page = () => {
           searchResults={searchResults}
           setSearchResults={setSearchResults}
           handleAddUser={handleAddUser}
+          onlineUsers={onlineUsers}
         />
 
         {/* chatbox */}
