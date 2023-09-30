@@ -1,11 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const Chat = ({ chat }) => {
+const Chat = ({ chat, onlineUsers }) => {
   let lastMessage = chat.messages[0].content;
-  // if (lastMessage.length > 24) {
-  //   lastMessage = lastMessage.slice(0, 22) + "...";
-  // }
+  function checkOnline() {
+    let onlineUserIds = onlineUsers.map(
+      (chat) => chat.participants.filter((p) => p._id != global.myId)[0]._id
+    );
+    let otherUserId = chat.participants.filter((p) => p._id != global.myId)[0]._id;
+    if (onlineUserIds.includes(otherUserId)) return true;
+    return false;
+  }
+
+  const statusColor = checkOnline() ? "bg-green-400" : "bg-gray-400";
   return (
     <>
       {/* container  */}
@@ -22,7 +29,8 @@ const Chat = ({ chat }) => {
             width={48}
             className="relative h-12 min-w-[48px] rounded-full bg-neutral-500"
           />
-          <span className="absolute bottom-0 left-9 h-3.5 w-3.5 rounded-full border-2 border-gray-800 bg-green-400 "></span>
+          <span
+            className={`absolute bottom-0 left-9 h-3.5 w-3.5 rounded-full border-2 border-gray-800 ${statusColor}`}></span>
         </div>
         {/* profile picture end  */}
 
