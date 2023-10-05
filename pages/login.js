@@ -2,6 +2,7 @@ import Router from "next/router";
 import { useState } from "react";
 
 import Head from "@/components/global/head";
+import Error from "@/components/global/error";
 import Title from "@/components/login/title";
 import EmailField from "@/components/login/emailfield";
 import PasswordField from "@/components/login/passwordfield";
@@ -11,16 +12,27 @@ import Link from "next/link";
 const BACKEND_ENDPOINT = process.env.NEXT_PUBLIC_BACKEND_ENDPOINT || "http://localhost:2000";
 const Login = () => {
   const [isProcessing, setIsProcessing] = useState(false);
+  const [error, setError] = useState(null);
+
+  function displayError(error) {
+    setIsProcessing(false);
+    setError(error);
+    if (global.timeout) clearTimeout(global.timeout);
+    global.timeout = setTimeout(() => {
+      setError(null);
+    }, 3000);
+  }
   return (
     <>
       <Head page="login" />
+      {error && <Error error={error} />}
       {/* container */}
       <div className="absolute flex min-h-full w-full flex-col items-center justify-center gap-3 p-3 md:gap-6">
         <Title />
         <form
           className="relative mb-4 flex flex-col items-center 
         justify-center gap-4 rounded-xl bg-bgColorStrong p-6 text-textColorSemiWeak"
-          onSubmit={(e) => handleSubmit(e, setIsProcessing)}>
+          onSubmit={(e) => handleSubmit(e, setIsProcessing, displayError)}>
           <EmailField />
           <PasswordField />
           <div className="mr-auto ml-1 text-sm">
@@ -36,30 +48,34 @@ const Login = () => {
   );
 };
 
-async function handleSubmit(e, setIsProcessing) {
+async function handleSubmit(e, setIsProcessing, displayError) {
   e.preventDefault();
   setIsProcessing(true);
-  // TODO: throw an error if the password field doesnt match confirm password
-  // i know this isnt hard but im too lazy to do the css styling at the moment.
   const email = e.target.email.value;
   const password = e.target.password.value;
   const user = { email, password };
-  // for testing purposes
+
   console.table(user);
+
   let res = await fetch(`${BACKEND_ENDPOINT}/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(user),
   });
 
+  const title = "Failed to login";
   switch (res.status) {
     case 404:
-      setIsProcessing(false);
-      console.log("User not found");
+      displayError({
+        title,
+        description: "User not found",
+      });
       break;
     case 401:
-      setIsProcessing(false);
-      console.log("Invalid password");
+      displayError({
+        title,
+        description: "Invalid password",
+      });
       break;
     case 200:
       res = await res.json();
